@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Main from './component/LearnHome';
-import Selector from './component/Selector';
-import Learn from './component/Learn';
-import './component/style/*.css'
+import Main from './component/learn/LearnHome';
+import Selector from './component/learn/Selector';
+import Learn from './component/learn/Learn';
+import './component/learn/style/*.css'
 
 const App: React.FC = () => {
   return (
