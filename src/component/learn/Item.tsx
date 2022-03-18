@@ -120,21 +120,24 @@ const Item: React.FC<Props> = (props) => {
 
   let { index, title, bgColor } = textConfig[props.num]
   return (
-    <li className="item" style={{ backgroundColor: `rgb(${bgColor})` }}>
-
+    <>
       <MediaQuery query="(min-width: 768px)">
-        <Link to="Learn">
-          <p className="index text">{index}</p>
-          <p className="text">{title}</p>
-        </Link>
+        <li className="item" style={{ backgroundColor: `rgb(${bgColor})` }}>
+          <Link to="Learn">
+            <h2 className="index text">{index}</h2>
+            <p className="text">{title}</p>
+          </Link>
+        </li>
       </MediaQuery>
       <MediaQuery query="(max-width: 767px)">
-        <Link to="Learn">
-          <p className="index text responsive">{index}</p>
-        </Link>
+        <li className="item-responsive" style={{ backgroundColor: `rgb(${bgColor})` }}>
+          <Link to="Learn">
+            <h3 className="index text">{index}</h3>
+            <p className="text">{title}</p>
+          </Link>
+        </li>
       </MediaQuery>
-    </li>
-
+    </>
   )
 
 }
