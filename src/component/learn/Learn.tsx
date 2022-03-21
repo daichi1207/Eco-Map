@@ -1,17 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import MediaQuery from 'react-responsive'
+import React from 'react'
+import ItemContainer from "./ItemContainer"
 
-const Learn: React.FC = () => {
+let config = { sdgsInfo: "SDGs stands for Sustainable Development Goals. To learn more about the 17 goals click on the one you want to learn about." }
+
+const LearnHome: React.FC = () => {
   return (
     <div>
-      <MediaQuery query="(min-Width: 768px)">
-
-      </MediaQuery>
-      <MediaQuery query="(max-Width: 767px)">
-      </MediaQuery>
+      <div className="my-5" style={{ textAlign: 'center' }}><h1>Learn</h1></div>
+      <div className="my-5" style={{ textAlign: 'center' }}>{config.sdgsInfo}</div>
+      <div><ItemContainer /></div>
     </div>
+
+
+
   )
 }
 
-export default Learn
+export default LearnHome

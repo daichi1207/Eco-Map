@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import './style/ItemContainer.css';
 import MediaQuery from "react-responsive";
 import { Link } from 'react-router-dom';
@@ -120,18 +120,22 @@ const Item: React.FC<Props> = (props) => {
 
   let { index, title, bgColor } = textConfig[props.num]
   return (
+    // このLink tagを打ち分けたい
     <>
       <MediaQuery query="(min-width: 768px)">
         <li className="item" style={{ backgroundColor: `rgb(${bgColor})` }}>
-          <Link to="Learn">
-            <h2 className="index text">{index}</h2>
-            <p className="text">{title}</p>
+          <Link to={index}>
+            {/* <button onClick={() => setSelectedPage({ index })}> */}
+            <button>
+              <h2 className="index text">{index}</h2>
+              <p className="text">{title}</p>
+            </button>
           </Link>
         </li>
       </MediaQuery>
       <MediaQuery query="(max-width: 767px)">
         <li className="item-responsive" style={{ backgroundColor: `rgb(${bgColor})` }}>
-          <Link to="Learn">
+          <Link to={index}>
             <h3 className="index text">{index}</h3>
             <p className="text">{title}</p>
           </Link>

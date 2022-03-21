@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Main from './component/learn/LearnHome';
-import Selector from './component/learn/Selector';
 import Learn from './component/learn/Learn';
-import './component/learn/style/*.css'
+import Selector from './component/learn/Selector';
+import Goal1 from './component/learn/Goal1'
+import Quiz from './component/quiz/Quiz'
+import './component/learn/style/App.css'
 
 const App: React.FC = () => {
   return (
@@ -12,9 +13,11 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Selector />
         <Routes>
-          <Route index element={<Main />} />
-          <Route path="LearnHome" element={<Main />} />
+          <Route index element={<Learn />} />
+          <Route path="Quiz" element={<Quiz />} />
           <Route path="Learn" element={<Learn />} />
+          <Route path="Learn/01" element={<Goal1 />} />
+
         </Routes>
       </BrowserRouter>
     </div>

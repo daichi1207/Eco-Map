@@ -7,6 +7,7 @@
 .item {
   width: calc(100% / 6 - 20px);
   background-color: #fff;
+  height: 10rem;
   /* border-radius: 100vh; */
 }
 
@@ -26,9 +27,15 @@
   text-align: center;
   width: calc(100% / 3 - 20px);
   background-color: #fff;
+  height: 8rem;
 }
 
 .item-responsive a {
   text-decoration: none;
   font-size: 0.9rem;
+}
+
+button {
+  background: transparent;
+  border: none;
 }
