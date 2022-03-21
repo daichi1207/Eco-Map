@@ -20,7 +20,7 @@ const Selector: React.FC = () => {
               <Link to="Quiz" style={{ textDecoration: 'none' }}  >Quiz</Link>
             </Col>
             <Col className="index">
-              <Link to="LearnHome" style={{ textDecoration: 'none' }}>Learn</Link>
+              <Link to="Learn" style={{ textDecoration: 'none' }}>Learn</Link>
             </Col>
           </Row>
         </Container>
