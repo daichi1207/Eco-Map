@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  position: absolute;
+  width: 116px;
+  height: 47px;
+  left: 130px;
+  top: 142px;
+
+  font-family: Prata;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1a1713;
+}
+
+h2 {
+  position: absolute;
+  width: 256px;
+  height: 70px;
+  left: 60px;
+  top: 200px;
+
+  font-family: Prata;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1a1713;
+}
+
+h3 {
+  position: absolute;
+  width: 256px;
+  height: 70px;
+  left: 60px;
+  top: 300px;
+
+  font-family: Prata;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #1a1713;
+}
+
+.App {
+  text-align: center;
+}
+
+.main-wrapper {
+  background-color: #e5e5e5;
+  margin: 0 auto;
+  padding: 96px 0;
+}
+
+.choices-container {
+  position: absolute;
+  width: 347px;
+  height: 282px;
+  left: 14px;
+  top: 462px;
+}
+
+.question-container {
+  width: 347px;
+  height: 282px;
+}
+
+.choice {
+  width: 347px;
+  height: 60px;
+  background: #f4ede6;
+  border-radius: 16px;
+  color: #1a1713;
+  font-size: 14px;
+  font-family: Prata;
+  align-content: center;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.is-opened {
+  visibility: visible;
+  opacity: 1;
+}
+.modal__box {
+  background-color: #fff;
+  position: relative;
+  padding: 30px 20px;
+}
+.close {
+  background-color: #fff;
+  position: relative;
+  padding: 30px 20px;
+  width: 100vw;
+  height: 20vh;
+  color: #1a1713;
+  font-family: Prata;
+  font-size: 14px;
+}
+.container {
+  background-color: #fff;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  padding: 30px 20px;
+}
+
+.Judgement {
+  background-color: #f4ede6;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 30px 20px;
+}
