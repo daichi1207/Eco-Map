@@ -53,7 +53,7 @@ export function Map(){
     const [dataset,setDataset]=useState(data1)
 
     const [regions,setRegions]=useState("world")
-    const [documentCache,setDocCache]=useState({"data1":{2021:{'Data':data1_re,'Unit':'person','Source':'Google'},'Unit':'person','Source':'Google'}} as dragon)
+    const [documentCache,setDocCache]=useState({"1.1.1 Proportion of population below international poverty line (%)":{2019:{'Data':data1_re,'Unit':'person','Source':'Google'},'Unit':'person','Source':'Google'}} as dragon)
     const [red,setRed]=useState("50")
     const [green,setGreen]=useState("50")
     const [blue,setBlue]=useState("50")
@@ -61,9 +61,9 @@ export function Map(){
     const [averageArray,setAverageArray]=useState(100)
     const [listBoxValue,setListBoxValue]=useState("first")
     const [sourceOfData,setSourceOfData]=useState('google')
-    const [dataYears,setDataYears]=useState([2021])
-    const [currentYear,setCurrentYear]=useState(2021)
-    const [targetName,setTargetName]=useState("google")
+    const [dataYears,setDataYears]=useState([2019])
+    const [currentYear,setCurrentYear]=useState(2019)
+    const [targetName,setTargetName]=useState("1.1.1 Proportion of population below international poverty line (%)")
     const [yearByData,setYearByData]=useState(data1)
 
 
@@ -212,8 +212,9 @@ export function Map(){
     });
 
     const yearChangeProgress=(yearInput:number|number[])=>{
-        if (!Array.isArray(yearInput)){
+        if (!Array.isArray(yearInput) && dataYears.includes(yearInput) ){
             setCurrentYear(yearInput)
+
             let sortValue=[...Object.entries(documentCache[targetName][yearInput]['Data'])]
             let newSortValue=swap(sortValue )
 

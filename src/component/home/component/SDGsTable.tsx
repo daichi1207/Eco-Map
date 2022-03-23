@@ -29,6 +29,7 @@ export function SDGsTable(props:tableProps){
         <Box sx={{
             height: 300,
             width: '100%',
+            fontWeight: 'bold',
 
             '& .super-app-theme--header': {
 
@@ -39,7 +40,7 @@ export function SDGsTable(props:tableProps){
         }}>
             <DataGrid
                 sx={{
-
+                    fontWeight: 'bold',
                     '& .MuiDataGrid-columnHeaders':{
 
                         backgroundColor:'green'
@@ -48,7 +49,7 @@ export function SDGsTable(props:tableProps){
                 }
 
                 }
-                pageSize={10}
+                pageSize={3}
                 components={{
                     Toolbar: CustomToolbar,
                 }}
@@ -61,14 +62,14 @@ export function SDGsTable(props:tableProps){
 
                     if(index!=0 ){
 
-                        let inputColumn2=value[1].toString()
+                        let inputColumn2=Number(value[1])
 
-                        if(typeof inputColumn2==='string') {
+                        if(typeof inputColumn2==='number') {
 
                             return {id: index, col1: value[0], col2: inputColumn2}
                         }
                     }
-                }).filter(Boolean) as { id: number; col1: string; col2: string; }[]}
+                }).filter(Boolean) as { id: number; col1: string; col2: number; }[]}
             />
         </Box>
 
