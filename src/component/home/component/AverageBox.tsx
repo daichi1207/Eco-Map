@@ -4,13 +4,15 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import '../style/map.css'
+import {getKeyByValue} from "../function/getKeyValue";
+import {allCountriesMetaData} from "../Data/dataExmples";
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    fontSize:'15px',
+    fontSize:'90%',
     textAlign: 'center',
 
     color: theme.palette.text.secondary,
-    height: 60,
+    height: 80,
     lineHeight: '30px',
     fontWeight:'bolder',
 
@@ -21,6 +23,7 @@ const darkTheme = createTheme({ palette: { mode: 'dark' } });
 type AverageBoxType={
     averageData:string
     UnitData:string
+    regionData:string
 }
 export  function AverageBox(props:AverageBoxType) {
     return (
@@ -39,8 +42,9 @@ export  function AverageBox(props:AverageBoxType) {
                         }}
                     >
                         <Item key={24} elevation={24}>
-                            <div className='AverageBoxContent'>&nbsp;UNIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{props.UnitData}&nbsp;</div>
+                            <div className='AverageBoxContent'>&nbsp;UNIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{props.UnitData}&nbsp;</div>
                             <div className='AverageBoxContent'>&nbsp;AVERAGE&nbsp;:&nbsp;{props.averageData}&nbsp;</div>
+                            <div className='AverageBoxContent'>&nbsp;REGION&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{getKeyByValue(allCountriesMetaData,props.regionData)}&nbsp;</div>
                         </Item>
 
                     </Box>

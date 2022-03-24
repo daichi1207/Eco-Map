@@ -1,5 +1,12 @@
 .topTable{
     display: flex;
+
+}
+
+.topTable2{
+    display: flex;
+    width:calc(98%/2)
+
 }
 
 .changeTable{
@@ -33,11 +40,12 @@
 .AverageBox:hover{
     transform: scale(1.5);
     position:absolute;
-    top:12%;
-    left:4.5%;
+    top:31.5%;
+    left:3.2%;
 }
 .AverageBoxContent{
     text-align: left;
+    margin-bottom: -3px;
 }
 
 
@@ -139,8 +147,8 @@
     .AverageBox:hover{
         transform: scale(1.5);
         position:absolute;
-        top:17%;
-        left:15%;
+        top:21%;
+        left:12%;
     }
 }
 .input-range-red{
@@ -201,6 +209,7 @@
 
 .modalAutoComplete{
     display: flex;
-    margin-top: 1%;
+    margin-top: 0%;
+    width:100%
 }
 

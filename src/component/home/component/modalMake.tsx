@@ -14,6 +14,8 @@ import {Autocomplete} from "@mui/material";
 import {TextField} from "@mui/material";
 import {YearSlider} from "./TimeBar";
 import {SDGsTargetObject} from "../Data/SDGsTargetData";
+import {AutoCompleteCountries} from "./autoCompleteCountries";
+import {AutoCompleteYear} from "./autoCompleteYear";
 
 
 const ButtonStyle={
@@ -85,38 +87,10 @@ export function BasicModal(props:ModalMake) {
 
                     <YearSlider timeArray={props.timeArray} yearChange={props.yearChange} currentYearData={props.currentYearData}/>
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Years</Typography>
-                    <div className='modalAutoComplete'>
-                        <Autocomplete
+                    <AutoCompleteCountries size={33} timeArray={props.timeArray} yearChange={props.yearChange} defaultYear={props.defaultYear}/>
 
-                            disablePortal
-                            id="combo-box-demo"
-                            options={props.timeArray.map(function(yearLog){ return yearLog.toString()})}
-                            sx={{
-                                width: "80%" ,
-                                marginLeft:'3%',
-
-                            }}
-                            renderInput={(params) => <TextField {...params} label="years" />}
-                            onInputChange={(event, value, reason)=>props.yearChange(Number(value))}
-                        />
-                        <Button sx={{width:'50%'}} variant='contained' className="resetButton" onClick={()=>props.yearChange(props.defaultYear)}>Reset to latest&nbsp;Year</Button>
-                    </div>
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Map Region</Typography>
-                    <div className='modalAutoComplete'>
-                        <Autocomplete
-
-                            disablePortal
-                            id="combo-box-demo"
-                            options={Object.keys(allCountriesMetaData)}
-                            sx={{
-                                width: "80%" ,
-                                marginLeft:'3%'
-                            }}
-                            renderInput={(params) => <TextField {...params} label="Country or Region" />}
-                            onInputChange={(event, value, reason)=>props.countryComponent(allCountriesMetaData[value])}
-                        />
-                        <Button sx={{width:'50%'}} variant='contained' className="resetButton" onClick={()=>props.countryComponent('world')}>Reset to World&nbsp;&nbsp;Map</Button>
-                    </div>
+                    <AutoCompleteYear size={33} countryComponent={props.countryComponent}/>
                     <Typography id="modal-modal-description" sx={{ mt: 2,marginLeft:2 }} variant="h6">
                         Click SDGs target!
                     </Typography>

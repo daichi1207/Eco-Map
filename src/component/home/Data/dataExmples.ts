@@ -289,6 +289,8 @@ export const allCountriesMetaData:{[key:string]:string}= {
 'Yemen':'YE',	 //	YE
 'Zambia':"ZM",	 //	ZM
 'Zimbabwe':'ZW'	 //	ZW
+    ,
+    'World':'world'
 }
 
 export const TrueSDGStargetNames=['1.1.1 Proportion of the population living below the international poverty line by sex, age, employment status and geographic location (urban/rural)',

@@ -28,6 +28,8 @@ import {YearSlider} from "./component/TimeBar";
 import {RowAndColumnSpacing} from "./component/TimeBarLegend";
 import {SDGsTable} from "./component/SDGsTable";
 import {SDGsTargetObject} from "./Data/SDGsTargetData";
+import {AutoCompleteCountries} from "./component/autoCompleteCountries";
+import {AutoCompleteYear} from "./component/autoCompleteYear";
 
 enableIndexedDbPersistence(db)
     .catch((err) => {
@@ -267,7 +269,11 @@ export function Map(){
 
                 />
             </div>
-            <AverageBox  averageData={averageArray.toString()} UnitData={unit}/>
+            <div className='topTable2'>
+                <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
+                <AutoCompleteYear size={48} countryComponent={setRegions}/>
+            </div>
+            <AverageBox regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
 
 
 
