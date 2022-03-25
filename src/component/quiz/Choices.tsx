@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState , useContext} from "react";
 import { questions } from "./data";
 import {Button} from "react-bootstrap";
+import {Number} from "./Quiz";
 
 type Props = {
     number: number;
@@ -9,6 +10,8 @@ type Props = {
 const Choice: React.FC<Props> = (props) => {
     const [show, setShow] = useState(false);
     const [tfNumber, setTfNumber] = useState(0);
+    const { number, setNumber } = useContext(Number);
+
 
     const Judgment = () => {
         if (show) {
@@ -21,7 +24,10 @@ const Choice: React.FC<Props> = (props) => {
                             className='modal__closeBtn'
                             title="close"
                             onClick={() => {
-                                setShow(false)
+                                setShow(false);
+                                if(number==9){
+                                    setNumber(0)
+                                }else{setNumber(number+1)}
                             }}
                         >
                             close
@@ -40,7 +46,10 @@ const Choice: React.FC<Props> = (props) => {
                             className='modal__closeBtn'
                             title="close"
                             onClick={() => {
-                                setShow(false)
+                                setShow(false);
+                                if(number==9){
+                                    setNumber(0)
+                                }else{setNumber(number+1)}
                             }}
                         >
                             close

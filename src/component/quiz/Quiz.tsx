@@ -6,23 +6,26 @@ import Question from "./Question";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "react-bootstrap";
 
+export const Number = React.createContext(
+    {} as {
+        number: number
+        setNumber: React.Dispatch<React.SetStateAction<number>>
+    }
+);
+
 const Quiz: React.FC = () => {
 
     const [number, setNumber] = useState(0);
+    const value = {
+        number,
+        setNumber,
+    };
 
   return (
-    <div>
+      <Number.Provider value={{ number, setNumber }}>
       <Question number={number} />
       <Choice number={number} />
-        <Button onClick={()=>{
-            if(number==9){
-                setNumber(0)
-            }else{setNumber(number+1)}
-        }}
-        className='next_quiz'>
-            next
-        </Button>
-    </div>
+      </Number.Provider>
   );
 }
 

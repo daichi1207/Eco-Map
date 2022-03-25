@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-
+  margin-top: 25px;
   color: #1a1713;
 }
 
@@ -69,17 +69,6 @@
   color: #1a1713;
 }
 
-.close {
-  background-color: #fff;
-  position: relative;
-  padding: 30px 20px;
-  width: 100vw;
-  height: 20vh;
-  color: #1a1713;
-  font-family: Prata;
-  font-size: 14px;
-}
-
 .Judgement {
   background-color: #f4ede6;
   max-width: inherit;
@@ -92,18 +81,9 @@
   align-items: center;
 }
 
-.next_quiz{
-  position: absolute;
-  bottom:30px;
-  right: 30px;
-  background-color: #FFF8F1;
-  border-color: #FFF8F1;
+.modal__closeBtn{
+  margin-top: 200px;
   color: #1a1713;
   font-family: Prata;
   font-size: 14px;
-}
-.next_quiz:hover{
-  background-color: #f4ede6;
-  border-color: #f4ede6;
-  color: #1a1713;
 }
