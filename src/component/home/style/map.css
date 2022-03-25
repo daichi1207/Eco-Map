@@ -1,0 +1,215 @@
+.topTable{
+    display: flex;
+
+}
+
+.topTable2{
+    display: flex;
+    width:calc(98%/2)
+
+}
+
+.changeTable{
+    width:calc(180%/2);
+    font-size: 160%;
+    padding: 0.5em 1em;
+
+    margin-right: 1px;
+    color: black;
+    height: 100%;
+
+
+    background: #7FFF00;
+    border-bottom: solid 6px #336600;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+}
+.graphs{
+    width:100%;
+    height: 100%;
+}
+.AverageBox{
+
+    z-index:1;
+    position:absolute;
+    transform:scale(1);
+
+
+}
+
+.AverageBox:hover{
+    transform: scale(1.5);
+    position:absolute;
+    top:31.5%;
+    left:3.2%;
+}
+.AverageBoxContent{
+    text-align: left;
+    margin-bottom: -3px;
+}
+
+
+
+.geoChart{
+    position: relative;
+    font-size: 0;
+}
+.bigAndBoldClass {
+    width: 100px;
+
+}
+
+
+.highlightClass{
+    width: 100px;
+
+}
+
+.tableClass{
+    margin: 0 auto;
+    width: 50%;
+    height: 100%;
+}
+.pieChartClass{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.regionButtonParent{
+    display:flex;
+    width: 100%;
+    height: 100%;
+
+}
+.regionButton {
+    position: relative;
+    font-size: 16px;
+    width: 14.28%;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*色*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    border: solid 2px #d27d00;/*線色*/
+
+}
+
+.regionButton:active {
+    /*押したとき*/
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+.regionButton{
+
+    font-size: 80%;
+    padding-left: 2px;
+    width: 14.28%;
+
+}
+.chartParent{
+    display:flex;
+    width: calc(100%);
+    height: 100%;
+
+
+}
+
+.BarChartHead{
+    font-size: 20px;
+    font-weight:bolder;
+
+    padding: 1rem 2rem;
+    color: #fff;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left top, right top, from(#f83600), to(#f9d423));
+    background-image: -webkit-linear-gradient(left, #f83600 0%, #f9d423 100%);
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+
+}
+
+.chartParent2{
+
+    width: 90%;
+    height: 100%;
+    margin: 0;
+
+
+}
+.chartGrandParent{
+    display:flex
+}
+@media screen and (max-width: 990px){
+    .chartGrandParent {
+        display:contents;
+    }
+    .AverageBox:hover{
+        transform: scale(1.5);
+        position:absolute;
+        top:21%;
+        left:12%;
+    }
+}
+.input-range-red{
+    -webkit-appearance: none;
+    background-color: red;
+    border-radius: 10px;
+    width:30%;
+}
+
+.input-range-green{
+    -webkit-appearance: none;
+    background-color: green;
+    border-radius: 10px;
+    width: 30%;
+}
+.input-range-blue{
+    -webkit-appearance: none;
+    background-color: blue;
+    border-radius: 10px;
+    width: 30%;
+}
+.columnHeadersMUI{
+    white-space: normal;
+    word-wrap: break-word;
+    color:black;
+}
+.bigAndBoldClass{
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: white;
+    word-break : break-all;
+    word-wrap: break-word;
+    table-layout: fixed;
+    width: 50px;
+
+
+    background: blue;
+    border-top: solid 5px blue;
+    border-bottom: solid 5px blue;
+    z-index: 0;
+}
+.highlightClass{
+
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;
+    border-top: solid 5px #5989cf;
+    border-bottom: solid 5px #5989cf;
+    z-index: 0;
+
+}
+
+.resetButton{
+    font-size: 100%;
+    max-height: 56px;
+}
+
+.modalAutoComplete{
+    display: flex;
+    margin-top: 0%;
+    width:100%
+}
+
