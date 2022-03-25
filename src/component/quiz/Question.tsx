@@ -8,8 +8,8 @@ type Props = {
 const Question: React.FC<Props> = (props) => {
     return (
         <div className='question-container'>
-            <h1>Quiz</h1>
-            <h2>{questions[props.number][0].sentence}</h2>
+            <p className='Title'>Quiz</p>
+            <p className= 'question_sentence'>{questions[props.number][0].sentence}</p>
         </div>
     );
 }

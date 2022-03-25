@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { questions } from "./data";
+import {Button} from "react-bootstrap";
 
 type Props = {
     number: number;
@@ -14,7 +15,7 @@ const Choice: React.FC<Props> = (props) => {
             if (questions[props.number][tfNumber].tf === true) {
                 return (
                     <div id="overlay" className="Judgement">
-                        <h1>correct</h1>
+                        <p className='Title'>correct</p>
                         <button
                             //key={val.answer}
                             className='modal__closeBtn'
@@ -31,9 +32,9 @@ const Choice: React.FC<Props> = (props) => {
             else {
                 return (
                     <div id="overlay" className="Judgement">
-                        <h1>wrong</h1>
-                        <h2>The correct answer is...{questions[props.number][5].answer}</h2>
-                        <h3>{questions[props.number][6].commentary}</h3>
+                        <p className='Title'>wrong</p>
+                        <p className='answer'>The correct answer is...{questions[props.number][5].answer}</p>
+                        <p className='commentary'>{questions[props.number][6].commentary}</p>
                         <button
                             //key={val.answer}
                             className='modal__closeBtn'
@@ -55,38 +56,38 @@ const Choice: React.FC<Props> = (props) => {
     return (
         <>
             <div className='choices-container'>
-                <button
+                <Button
                     //key={val.answer}
                     className='choice'
                     title="a"
                     onClick={() => { setShow(true); setTfNumber(tfNumber + 1); }}
                 >
                     {questions[props.number][1].choice}
-                </button>
-                <button
+                </Button>
+                <Button
                     //key={val.answer}
                     className='choice'
                     title="b"
                     onClick={() => { setShow(true); setTfNumber(tfNumber + 2); }}
                 >
                     {questions[props.number][2].choice}
-                </button>
-                <button
+                </Button>
+                <Button
                     //key={val.answer}
                     className='choice'
                     title="c"
                     onClick={() => { setShow(true); setTfNumber(tfNumber + 3); }}
                 >
                     {questions[props.number][3].choice}
-                </button>
-                <button
+                </Button>
+                <Button
                     //key={val.answer}
                     className='choice'
                     title="d"
                     onClick={() => { setShow(true); setTfNumber(tfNumber + 4); }}
                 >
                     {questions[props.number][4].choice}
-                </button>
+                </Button>
             </div>
             <Judgment />
         </>
