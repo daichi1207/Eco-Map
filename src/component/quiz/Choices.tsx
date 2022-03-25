@@ -25,6 +25,7 @@ const Choice: React.FC<Props> = (props) => {
                             title="close"
                             onClick={() => {
                                 setShow(false);
+                                setTfNumber(0);
                                 if(number==9){
                                     setNumber(0)
                                 }else{setNumber(number+1)}
@@ -47,6 +48,7 @@ const Choice: React.FC<Props> = (props) => {
                             title="close"
                             onClick={() => {
                                 setShow(false);
+                                setTfNumber(0);
                                 if(number==9){
                                     setNumber(0)
                                 }else{setNumber(number+1)}

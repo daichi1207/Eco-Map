@@ -4,7 +4,6 @@ import Choice from './Choices'
 import { useState, useEffect } from 'react';
 import Question from "./Question";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from "react-bootstrap";
 
 export const Number = React.createContext(
     {} as {

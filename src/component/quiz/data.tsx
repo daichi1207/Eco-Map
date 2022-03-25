@@ -12,9 +12,9 @@ export const questions=[
     ],
     [
         {sentence:"How much more marine life do we have today than in 1970?"},
-        {choice:"100%",tf:true},
+        {choice:"100%",tf:false},
         {choice:"70%",tf:false},
-        {choice:"50%",tf:false},
+        {choice:"50%",tf:true},
         {choice:"30%",tf:false},
         {answer:"50%"},
         {commentary:"commentary"},
