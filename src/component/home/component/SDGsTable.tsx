@@ -69,9 +69,11 @@ export function SDGsTable(props:tableProps){
                         if(typeof inputColumn2==='number') {
 
                             return {id: index, col1: value[0], col2: inputColumn2}
+                        } else {
+                            return {id: index, col1: value[0], col2: "value[1]"}
                         }
                     }
-                }).filter(Boolean) as { id: number; col1: string; col2: number; }[]}
+                }).filter(Boolean) as { id: number; col1: string; col2: (number|string); }[]}
             />
         </Box>
 
