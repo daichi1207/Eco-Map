@@ -22,7 +22,7 @@ import {
     StyledButton,
     StyledListbox,
     StyledPopper
-} from "./component/listBoxSample";
+} from "./component/listBoxIndicators";
 import SelectUnstyled from "@mui/base/SelectUnstyled";
 import {YearSlider} from "./component/TimeBar";
 import {RowAndColumnSpacing} from "./component/TimeBarLegend";
@@ -30,6 +30,7 @@ import {SDGsTable} from "./component/SDGsTable";
 import {SDGsTargetObject} from "./Data/SDGsTargetData";
 import {AutoCompleteCountries} from "./component/autoCompleteCountries";
 import {AutoCompleteYear} from "./component/autoCompleteYear";
+import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
 
 enableIndexedDbPersistence(db)
     .catch((err) => {
@@ -308,7 +309,7 @@ export function Map(){
                 </div>
                 <div className="chartParent2">
                     <div className="BarChartHead">Table of All Countries</div>
-                    <SDGsTable dataset={dataset}/>
+                    <SDGsTable dataset={dataset} unit={unit}/>
 
                 </div>
 

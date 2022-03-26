@@ -23,6 +23,8 @@ function CustomToolbar() {
 
 type tableProps={
     dataset:[string, (string | number)][]
+    unit:string
+
 }
 export function SDGsTable(props:tableProps){
     return(
@@ -56,7 +58,7 @@ export function SDGsTable(props:tableProps){
 
                 columns={[
                     { field: 'col1', headerName: props.dataset[0][0], width: 100 ,headerClassName: 'super-app-theme--header',},
-                    { field: 'col2', headerName: "Value" as string,width: 100 ,headerClassName: 'super-app-theme--header',hideable:false},
+                    { field: 'col2', headerName: props.unit as string,width: 260 ,headerClassName: 'super-app-theme--header',hideable:false},
                 ]}
                 rows={props.dataset.map(function(value,index){
 
