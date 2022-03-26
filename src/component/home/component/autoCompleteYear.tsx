@@ -24,6 +24,6 @@ export function AutoCompleteYear(props:AutoCompleteYearProps){
                 renderInput={(params) => <TextField {...params} label="Country or Region" />}
                 onInputChange={(event, value, reason)=>props.countryComponent(allCountriesMetaData[value])}
             />
-            <Button sx={{width:'calc('+props.size+'%)',fontSize:'90%'}} variant='contained' className="resetButton" onClick={()=>props.countryComponent('world')}>Reset to World&nbsp;Map</Button>
+            <Button sx={{width:'calc('+props.size+'%)',fontSize:'85%'}} variant='contained' className="resetButton" onClick={()=>props.countryComponent('world')}>Reset to World&nbsp;Map</Button>
         </div>)
 }

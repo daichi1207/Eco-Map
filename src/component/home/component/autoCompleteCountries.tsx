@@ -33,7 +33,7 @@ export function AutoCompleteCountries(props:countriesCompleteProps){
                 renderInput={(params) => <TextField {...params} label="years" />}
                 onInputChange={(event, value, reason)=>props.yearChange(Number(value))}
             />
-            <Button sx={{width:'calc('+props.size+'%)',fontSize:'90%'}} variant='contained' className="resetButton" onClick={()=>props.yearChange(props.defaultYear)}>Reset to LatestYear</Button>
+            <Button sx={{width:'calc('+props.size+'%)',fontSize:'85%'}} variant='contained' className="resetButton" onClick={()=>props.yearChange(props.defaultYear)}>Reset to LatestYear</Button>
         </div>
     )
 

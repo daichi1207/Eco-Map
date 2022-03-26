@@ -271,14 +271,14 @@ export function Map(){
             </div>
             <div className='topTable2'>
                 <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
-                <AutoCompleteYear size={48} countryComponent={setRegions}/>
+                <AutoCompleteYear size={46} countryComponent={setRegions}/>
             </div>
             <AverageBox regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
 
 
 
 
-            <Chart chartType="GeoChart" width="100%" height="420px" data={dataset} options={options} className="geoChart" />
+            <Chart chartType="GeoChart" width="98%" height="420px" data={dataset} options={options} className="geoChart" />
             <div className="regionButtonParent">
 
                 <button className="regionButton" onClick={()=>setRegions("world")}>World</button>
@@ -293,17 +293,26 @@ export function Map(){
             </div>
             <RowAndColumnSpacing/>
             <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
+            <div className="BarChartHead2">Data Change Progress</div>
             <Chart chartType='AreaChart' data={yearByData.map(function(yearByData1){if(yearByData1[0]!='Country' ){return [Number(yearByData1[0]),yearByData1[1]]}else{return yearByData1}})} options={areaChartOptions(listBoxValue)}/>
 
             <div className="chartGrandParent">
-                <div className="chartParent">
-                    <SDGsTable dataset={dataset}/>
+                <div className="chartParent2">
+                    <div className="BarChartHead">Pie Chart of Countries</div>
                     <Chart className="pieChartClass" chartType="PieChart" data={dataset} width="100%" height="300px" options={pieChartOption}/>
+
                 </div>
                 <div className="chartParent2">
                     <div className="BarChartHead">Top 10 Countries</div>
-                    <Chart chartType="BarChart" data={dataset.slice(0,11) } options={barChartOption}/>
+                    <Chart chartType="BarChart" data={dataset.slice(0,11) } options={barChartOption} width="100%" height="300px"/>
                 </div>
+                <div className="chartParent2">
+                    <div className="BarChartHead">Table of All Countries</div>
+                    <SDGsTable dataset={dataset}/>
+
+                </div>
+
+
             </div>
             <input type="range" className="input-range-red" name="foo" min="0" max="255" onChange={(e)=>setRed(e.target.value)} />
             <input type="range" className="input-range-green" name="foo" min="0" max="255" onChange={(e)=>setGreen(e.target.value)} />

@@ -1,11 +1,17 @@
 .topTable{
     display: flex;
-
+    margin: 10px;
 }
 
 .topTable2{
     display: flex;
-    width:calc(98%/2)
+    width:calc(98%/2);
+    transform: scale(0.95);
+    margin-left: 2%;
+    margin-top:10px;
+    margin-bottom: 10px;
+
+
 
 }
 
@@ -14,7 +20,7 @@
     font-size: 160%;
     padding: 0.5em 1em;
 
-    margin-right: 1px;
+    margin-right: 10px;
     color: black;
     height: 100%;
 
@@ -32,6 +38,8 @@
 
     z-index:1;
     position:absolute;
+    top:42%;
+    left:2%;
     transform:scale(1);
 
 
@@ -40,8 +48,8 @@
 .AverageBox:hover{
     transform: scale(1.5);
     position:absolute;
-    top:31.5%;
-    left:3.2%;
+    top:42%;
+    left:5.5%;
 }
 .AverageBoxContent{
     text-align: left;
@@ -53,6 +61,11 @@
 .geoChart{
     position: relative;
     font-size: 0;
+    margin-top: 10px;
+    margin-left: 2%;
+
+    margin-bottom: 0;
+
 }
 .bigAndBoldClass {
     width: 100px;
@@ -80,6 +93,8 @@
     display:flex;
     width: 100%;
     height: 100%;
+    margin-left: 2%;
+    margin-right:1%;
 
 }
 .regionButton {
@@ -105,7 +120,7 @@
 
     font-size: 80%;
     padding-left: 2px;
-    width: 14.28%;
+    width: 13.7%;
 
 }
 .chartParent{
@@ -119,6 +134,27 @@
 .BarChartHead{
     font-size: 20px;
     font-weight:bolder;
+    margin-top: 8%;
+
+    margin-bottom: 5%;
+
+    padding: 1rem 2rem;
+    color: #fff;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left top, right top, from(#f83600), to(#f9d423));
+    background-image: -webkit-linear-gradient(left, #f83600 0%, #f9d423 100%);
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+
+}
+
+.BarChartHead2{
+    font-size: 20px;
+    font-weight:bolder;
+    margin-top: 6%;
+    margin-right: 2%;
+    margin-left: 2%;
+
+    margin-bottom: 3%;
 
     padding: 1rem 2rem;
     color: #fff;
@@ -131,9 +167,12 @@
 
 .chartParent2{
 
-    width: 90%;
+    width: 96%;
     height: 100%;
-    margin: 0;
+    margin-top: 4%;
+    margin-left:2%;
+    margin-right:2%;
+    margin-bottom: 4%;
 
 
 }
@@ -147,8 +186,8 @@
     .AverageBox:hover{
         transform: scale(1.5);
         position:absolute;
-        top:21%;
-        left:12%;
+        top:41%;
+        left:15%;
     }
 }
 .input-range-red{
@@ -209,7 +248,7 @@
 
 .modalAutoComplete{
     display: flex;
-    margin-top: 0%;
+    margin-top: 0;
     width:100%
 }
 

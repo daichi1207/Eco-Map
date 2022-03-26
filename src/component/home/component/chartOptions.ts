@@ -72,8 +72,8 @@ export const pieChartOption={
 }
 export const barChartOption={
     colors:["green"],
-    fontSize:9,
-    chartArea: {width:'100%',left:'25%'},
+    fontSize:12,
+    chartArea: {width:'100%',left:'20%',height: '80%'},
     legend:{position: 'bottom'},
     tooltip:{textStyle:{fontSize:15}, showColorCode: true}
 }
