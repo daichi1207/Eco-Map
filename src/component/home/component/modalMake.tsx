@@ -16,11 +16,21 @@ import {YearSlider} from "./TimeBar";
 import {SDGsTargetObject} from "../Data/SDGsTargetData";
 import {AutoCompleteCountries} from "./autoCompleteCountries";
 import {AutoCompleteYear} from "./autoCompleteYear";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    LinkedinIcon,
+    LinkedinShareButton,
+    TwitterIcon,
+    TwitterShareButton, WhatsappIcon, WhatsappShareButton
+} from "react-share";
+import Box from "@mui/material/Box";
+import {ShareIcons} from "./shareIcons";
 
 
 const ButtonStyle={
     width:'100%',
-    height: '100%',
+    height: '70%',
     color:"white",
     backgroundColor:'#FF6600',
     fontSize:'160%',
@@ -65,7 +75,7 @@ export function BasicModal(props:ModalMake) {
     return (
         <div>
             <Button variant='contained' onClick={handleClickOpen("paper")} sx={ButtonStyle}>OPTIONS</Button>
-
+            <ShareIcons left="10" top="3"/>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -76,6 +86,7 @@ export function BasicModal(props:ModalMake) {
                 <Typography variant='h4'>&nbsp;SDGs Map Options</Typography>
                 <Typography variant='h6' sx={{marginLeft:2.5}}>Current Data</Typography>
                 <Typography sx={{marginLeft:4}}>{props.currentStatus}</Typography>
+                <ShareIcons left="55" top="0"/>
 
 
 
