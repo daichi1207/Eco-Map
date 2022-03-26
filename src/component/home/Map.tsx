@@ -31,6 +31,7 @@ import {SDGsTargetObject} from "./Data/SDGsTargetData";
 import {AutoCompleteCountries} from "./component/autoCompleteCountries";
 import {AutoCompleteYear} from "./component/autoCompleteYear";
 import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
+import {StringToNumber} from "./function/stringToNumber";
 
 enableIndexedDbPersistence(db)
     .catch((err) => {
@@ -107,18 +108,20 @@ export function Map(){
                             setUnit(unitCache)
                             setSourceOfData(doc.data()[tableName]['Source'])
 
+                            let currentYearDataCache=doc.data()[tableName][currentYearCache]['Data']
 
-                            let sortValue=[...Object.entries(doc.data()[tableName][currentYearCache]['Data'])]
+
+                            let sortValue=[...StringToNumber(Object.entries(currentYearDataCache))]
 
                             let yearByDataCache=[["Country",unitCache+" "+"BY YEAR"]] as [string,(string|number)][]
                             for(let oneYearData of yearsCacheData){yearByDataCache.push(
-                                [oneYearData.toString(),getAverage(Object.entries(doc.data()[tableName][oneYearData]['Data']))])
+                                [oneYearData.toString(),getAverage(StringToNumber(Object.entries(doc.data()[tableName][oneYearData]['Data'])))])
                             }
 
                             setYearByData(yearByDataCache)
 
 
-                            setAverageArray(getAverage(Object.entries(doc.data()[tableName][currentYearCache]['Data'])))
+                            setAverageArray(getAverage(StringToNumber(Object.entries(currentYearDataCache))))
                             let newSortValue=swap(sortValue as [string, (string|number)][])
 
                             setDataset(newSortValue)
