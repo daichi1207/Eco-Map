@@ -14,18 +14,18 @@ export const Number = React.createContext(
 
 const Quiz: React.FC = () => {
 
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState(Math.floor(Math.random() * 9));
     const value = {
         number,
         setNumber,
     };
 
-  return (
-      <Number.Provider value={{ number, setNumber }}>
-      <Question number={number} />
-      <Choice number={number} />
-      </Number.Provider>
-  );
+    return (
+        <Number.Provider value={{ number, setNumber }}>
+            <Question number={number} />
+            <Choice number={number} />
+        </Number.Provider>
+    );
 }
 
 export default Quiz;
