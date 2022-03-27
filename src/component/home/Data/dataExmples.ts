@@ -4,7 +4,23 @@
 
 
 export const SDGStargetNamespre=["1.1.1_Proportion of population below international poverty line (%)","1.12qqq","2.3 diffrent document"]
-export const SDGStargetNames=['1.1.1 Proportion of population below international poverty line (%)', '1.2.1　Proportion of population living below the national poverty line (%)']
+export const SDGStargetNames=[
+    '1.1.1 Proportion of population below international poverty line (%)',
+    '1.2.1　Proportion of population living below the national poverty line (%)',
+    '2.1.1 Prevalence of undernourishment (%)',
+    '3.1.1 Maternal mortality ratio',
+    '4.1.1 Proportion of children and young people achieving a minimum proficiency level in reading and mathematics (%)',
+    '5.1.1 Legal frameworks that promote, enforce and monitor gender equality (percentage of achievement, 0 - 100) -- Area 1: overarching legal frameworks and public life',
+    '6.1.1 Proportion of population using safely managed drinking water services, by urban/rural (%)',
+    '7.1.1 Proportion of population with access to electricity, by urban/rural (%)',
+    '8.1.1 Annual growth rate of real GDP per capita (%)',
+    '9.1.1 Proportion of the rural population who live within 2 km of an all-season road',
+    '10.1.1 Growth rates of household expenditure or income per capita (%)',
+    '11.1.1 Proportion of urban population living in slums (%)',
+    '12.1.1 Countries with sustainable consumption and production (SCP) national action plans or SCP mainstreamed as a priority or target into national policies (1 = YES; 0 = NO)',
+    '13.1.1 Number of missing persons due to disaster (number)',
+    '14.1.1 Chlorophyll-a deviations, remote sensing (%)',
+]
 export const data1 :[string, (string | number)][]= [
     ["Country", "Popularity"],
     ["Germany", 200],
@@ -28,7 +44,17 @@ export const data1_re={
 
 };
 
-
+export const data2 :[string, (string | number)][]= [
+    ["Country", "Popularity"],
+    ["Germany", "<2.5"],
+    ["United States", 300],
+    ["Brazil", 400],
+    ["Canada", 500],
+    ["France", 600],
+    ["RU", 700],
+    ["Australia",300],
+    ["japan",1003]
+];
 
 
 export const allCountriesMetaData:{[key:string]:string}= {
