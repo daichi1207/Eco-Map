@@ -9,8 +9,11 @@ type Props = {
 
 const Choice: React.FC<Props> = (props) => {
     const [show, setShow] = useState(false);
+    const [result,setResult]=useState(false);
     const [tfNumber, setTfNumber] = useState(0);
     const { number, setNumber } = useContext(Number);
+    const [count,setCount]=useState(0);
+    const [correct,setCorrect] =useState(0);
 
 
     const Judgment = () => {
@@ -25,14 +28,17 @@ const Choice: React.FC<Props> = (props) => {
                             title="close"
                             onClick={() => {
                                 setShow(false);
+                                setCount(count+1);
+                                setCorrect(correct+1);
                                 setTfNumber(0);
-                                if(number==9){
-                                    setNumber(0)
-                                }else{setNumber(number+1)}
+                                setNumber(Math.floor(Math.random() * 9));
+                                if(count===4){
+                                    setResult(true);
+                                }
                             }}
                         >
-                            close
-                            </button>
+                            next
+                        </button>
                     </div>
                 )
             }
@@ -48,18 +54,44 @@ const Choice: React.FC<Props> = (props) => {
                             title="close"
                             onClick={() => {
                                 setShow(false);
+                                setCount(count+1);
                                 setTfNumber(0);
-                                if(number==9){
-                                    setNumber(0)
-                                }else{setNumber(number+1)}
+                                setNumber(Math.floor(Math.random() * 9));
+                                if(count===4){
+                                    setResult(true);
+                                }
                             }}
                         >
-                            close
+                            next
                         </button>
                     </div>
                 )
             }
         } else {
+            return null;
+        }
+    };
+
+    const Result=()=>{
+        if(result){
+            return(
+                <div id="overlay" className="result">
+                    <div className="Title">Result</div>
+                    <div className="score">Your score is {correct} !</div>
+                    <button
+                        //key={val.answer}
+                        className='modal__closeBtn'
+                        title="close"
+                        onClick={() => {
+                            setResult(false);
+                            setCount(0);
+                            setCorrect(0);
+                        }}
+                    >
+                        close
+                    </button>
+                </div>
+            )}else{
             return null;
         }
     };
@@ -101,6 +133,7 @@ const Choice: React.FC<Props> = (props) => {
                 </Button>
             </div>
             <Judgment />
+            <Result/>
         </>
     );
 }
