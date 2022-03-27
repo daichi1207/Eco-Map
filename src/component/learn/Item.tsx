@@ -117,15 +117,14 @@ const textConfig: TextConfig = {
   }
 }
 const Item: React.FC<Props> = (props) => {
-
+  let id = props.num;
   let { index, title, bgColor } = textConfig[props.num]
   return (
     // このLink tagを打ち分けたい
     <>
       <MediaQuery query="(min-width: 768px)">
         <li className="item" style={{ backgroundColor: `rgb(${bgColor})` }}>
-          <Link to={index}>
-            {/* <button onClick={() => setSelectedPage({ index })}> */}
+          <Link to={id.toString()}>
             <button>
               <h2 className="index text">{index}</h2>
               <p className="text">{title}</p>
@@ -135,7 +134,7 @@ const Item: React.FC<Props> = (props) => {
       </MediaQuery>
       <MediaQuery query="(max-width: 767px)">
         <li className="item-responsive" style={{ backgroundColor: `rgb(${bgColor})` }}>
-          <Link to={index}>
+          <Link to={id.toString()}>
             <h3 className="index text">{index}</h3>
             <p className="text">{title}</p>
           </Link>

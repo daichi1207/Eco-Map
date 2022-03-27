@@ -15,12 +15,15 @@ const Selector: React.FC = () => {
         <Container className="mt-3">
           <Row>
             <Col xs={1} style={{ padding: '0.5rem' }} ><IconContext.Provider value={{ size: '2.0rem' }} ><BsPinMap /></IconContext.Provider></Col>
-            <Col xs={7} ><h1 className="title">Eco Map</h1></Col>
+            <Col xs={5} ><h1 className="title">Eco Map</h1></Col>
             <Col>
-              <Link to="Quiz" style={{ textDecoration: 'none' }}  >Quiz</Link>
+              <Link to="/Map" style={{ textDecoration: 'none' }}>Map</Link>
+            </Col>
+            <Col>
+              <Link to="/Quiz" style={{ textDecoration: 'none' }}  >Quiz</Link>
             </Col>
             <Col className="index">
-              <Link to="Learn" style={{ textDecoration: 'none' }}>Learn</Link>
+              <Link to="/Learn" style={{ textDecoration: 'none' }}>Learn</Link>
             </Col>
           </Row>
         </Container>
@@ -31,10 +34,13 @@ const Selector: React.FC = () => {
             <Col xs={1} style={{ padding: '0.2rem' }} ><IconContext.Provider value={{ size: '1.5rem' }} ><BsPinMap /></IconContext.Provider></Col>
             <Col xs={5} ><h1 className="title">Eco Map</h1></Col>
             <Col>
-              <Link to="Quiz" style={{ textDecoration: 'none' }}  >Quiz</Link>
+              <Link to="/Map" style={{ textDecoration: 'none' }}>Map</Link>
+            </Col>
+            <Col>
+              <Link to="/Quiz" style={{ textDecoration: 'none' }}  >Quiz</Link>
             </Col>
             <Col className="index">
-              <Link to="Learn" style={{ textDecoration: 'none' }}>Learn</Link>
+              <Link to="/Learn" style={{ textDecoration: 'none' }}>Learn</Link>
             </Col>
           </Row>
         </Container>
