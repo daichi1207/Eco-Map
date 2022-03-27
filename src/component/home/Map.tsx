@@ -43,7 +43,7 @@ interface dragon{ [key:string]: {[key:number]:{'Data':{[key:string]:(string|numb
 export function Map(){
     useEffect(()=>{
         let firstDataTitle="1.1.1 Proportion of population below international poverty line (%)"
-        takeSnapshot(firstDataTitle.charAt(0),firstDataTitle)
+        takeSnapshot(firstDataTitle.substring(0,2),firstDataTitle)
         setListBoxValue("1.1.1 Proportion of population below international poverty line (%)")
     },[])
 
@@ -78,10 +78,11 @@ export function Map(){
 
 
     const takeSnapshot=(documentName:string,tableName:string)=>{
+        documentName=documentName.replace("\.","")
         setTargetName(tableName)
         if(documentName !=docNowName) {
 
-            const snapshot = getDocs(query(collection(db, "sdgs"), where(documentId(), "==", documentName)))
+            const snapshot = getDocs(query(collection(db, "SDGs"), where(documentId(), "==", documentName)))
             snapshot.then((querySnapshot) => {
                 querySnapshot.docs
                     .forEach((doc) => {
@@ -176,7 +177,7 @@ export function Map(){
                     const changeData=value.toString() as string
                     setListBoxValue(changeData)
 
-                    takeSnapshot(changeData.charAt(0),changeData)
+                    takeSnapshot(changeData.substring(0,2),changeData)
 
             }
 
@@ -190,7 +191,7 @@ export function Map(){
                 const changeData=e.currentTarget.value.toString() as string
                 setListBoxValue(changeData)
 
-                takeSnapshot(changeData.charAt(0),changeData)
+                takeSnapshot(changeData.substring(0,2),changeData)
 
 
 
@@ -317,9 +318,8 @@ export function Map(){
 
 
             </div>
-            <input type="range" className="input-range-red" name="foo" min="0" max="255" onChange={(e)=>setRed(e.target.value)} />
-            <input type="range" className="input-range-green" name="foo" min="0" max="255" onChange={(e)=>setGreen(e.target.value)} />
-            <input type="range" className="input-range-blue" name="foo" min="0" max="255" onChange={(e)=>setBlue(e.target.value)} />
+            <RowAndColumnSpacing/>
+            <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
 
 
 
