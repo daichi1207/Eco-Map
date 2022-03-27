@@ -47,8 +47,8 @@ export const StyledButton = styled('button')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    background: ${theme.palette.mode === 'dark' ? '' : "#33CCFF"};
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : "black"};
   }
 
   &.${selectUnstyledClasses.focusVisible} {

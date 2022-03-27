@@ -22,7 +22,7 @@ import {
     StyledButton,
     StyledListbox,
     StyledPopper
-} from "./component/listBoxSample";
+} from "./component/listBoxIndicators";
 import SelectUnstyled from "@mui/base/SelectUnstyled";
 import {YearSlider} from "./component/TimeBar";
 import {RowAndColumnSpacing} from "./component/TimeBarLegend";
@@ -30,15 +30,11 @@ import {SDGsTable} from "./component/SDGsTable";
 import {SDGsTargetObject} from "./Data/SDGsTargetData";
 import {AutoCompleteCountries} from "./component/autoCompleteCountries";
 import {AutoCompleteYear} from "./component/autoCompleteYear";
+import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
+import {StringToNumber} from "./function/stringToNumber";
+import {StringToDelete} from "./function/stringToDelete";
 
-enableIndexedDbPersistence(db)
-    .catch((err) => {
-        if (err.code == 'failed-precondition') {
 
-        } else if (err.code == 'unimplemented') {
-
-        }
-    });
 
 
 
@@ -106,19 +102,22 @@ export function Map(){
                             setUnit(unitCache)
                             setSourceOfData(doc.data()[tableName]['Source'])
 
+                            let currentYearDataCache=doc.data()[tableName][currentYearCache]['Data']
 
-                            let sortValue=[...Object.entries(doc.data()[tableName][currentYearCache]['Data'])]
+
+
+                            let sortValue=[...StringToDelete(StringToNumber(Object.entries(currentYearDataCache)))]
 
                             let yearByDataCache=[["Country",unitCache+" "+"BY YEAR"]] as [string,(string|number)][]
                             for(let oneYearData of yearsCacheData){yearByDataCache.push(
-                                [oneYearData.toString(),getAverage(Object.entries(doc.data()[tableName][oneYearData]['Data']))])
+                                [oneYearData.toString(),getAverage(StringToNumber(Object.entries(doc.data()[tableName][oneYearData]['Data'])))])
                             }
 
                             setYearByData(yearByDataCache)
 
+                            let newSortValue=swap(sortValue)
+                            setAverageArray(getAverage(sortValue))
 
-                            setAverageArray(getAverage(Object.entries(doc.data()[tableName][currentYearCache]['Data'])))
-                            let newSortValue=swap(sortValue as [string, (string|number)][])
 
                             setDataset(newSortValue)
                             setDocCache(doc.data())
@@ -141,19 +140,20 @@ export function Map(){
 
             setUnit(unitCache)
             setSourceOfData(documentCache[tableName]['Source'])
-            let sortValue=[...Object.entries(documentCache[tableName][currentYearCache]['Data'])]
-            let newSortValue=swap(sortValue )
+            let sortValue=[...StringToNumber(Object.entries(documentCache[tableName][currentYearCache]['Data']))]
+
             let yearByDataCache=[["Country",unitCache]] as [string,(string|number)][]
             for(let oneYearData of yearsCacheData){yearByDataCache.push(
-                [oneYearData.toString(),getAverage(Object.entries(documentCache[tableName][oneYearData]['Data']))])
+                [oneYearData.toString(),getAverage(StringToNumber(Object.entries(documentCache[tableName][oneYearData]['Data'])))])
             }
 
 
             setYearByData(yearByDataCache)
 
             setAverageArray(getAverage(sortValue))
-
+            let newSortValue=swap(StringToDelete(sortValue))
             setDataset(newSortValue)
+
         }
 
 
@@ -191,7 +191,7 @@ export function Map(){
                 setListBoxValue(changeData)
 
                 takeSnapshot(changeData.charAt(0),changeData)
-                console.log(SDGsTargetObject['1.2.1　Proportion of population living below the national poverty line (%)'],targetName)
+
 
 
         }
@@ -218,11 +218,14 @@ export function Map(){
             setCurrentYear(yearInput)
 
             let sortValue=[...Object.entries(documentCache[targetName][yearInput]['Data'])]
-            let newSortValue=swap(sortValue )
+            let newSortValue=swap(StringToDelete(StringToNumber(sortValue) ))
 
-            setAverageArray(getAverage(sortValue))
+            setAverageArray(getAverage(StringToDelete(StringToNumber(sortValue))))
+
 
             setDataset(newSortValue)
+
+
         }
     }
     useEffect(() => {
@@ -308,7 +311,7 @@ export function Map(){
                 </div>
                 <div className="chartParent2">
                     <div className="BarChartHead">Table of All Countries</div>
-                    <SDGsTable dataset={dataset}/>
+                    <SDGsTable dataset={dataset} unit={unit}/>
 
                 </div>
 
