@@ -20,7 +20,7 @@ const Choice: React.FC<Props> = (props) => {
         if (show) {
             if (questions[props.number][tfNumber].tf === true) {
                 return (
-                    <div id="overlay" className="Judgement">
+                    <div id="overlay" className="Judgement_correct">
                         <p className='Title'>correct</p>
                         <button
                             //key={val.answer}
@@ -44,7 +44,7 @@ const Choice: React.FC<Props> = (props) => {
             }
             else {
                 return (
-                    <div id="overlay" className="Judgement">
+                    <div id="overlay" className="Judgement_wrong">
                         <p className='Title'>wrong</p>
                         <p className='answer'>The correct answer is...{questions[props.number][5].answer}</p>
                         <p className='commentary'>{questions[props.number][6].commentary}</p>
