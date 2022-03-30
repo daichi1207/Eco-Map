@@ -10,10 +10,11 @@ export function initialSort(objectString: { [key:string]:string }){
         if (Number(prevNums[0]) > Number(consNums[0])){ return 1
         }else if (Number(prevNums[0]) < Number(consNums[0])){ return -1
         }else{
-            if (Number(prevNums[1])!==undefined && Number(consNums[1]!==undefined)){
+
+            if (!(Number.isNaN(Number(prevNums[1])) || Number.isNaN(Number(consNums[1])))){
                 if (Number(prevNums[1]) > Number(consNums[1])){ return 1
                 }else if (Number(prevNums[1]) < Number(consNums[1])){ return -1}else{
-                    if (Number(prevNums[2])!==undefined && Number(consNums[2])!==undefined){
+                    if (!(Number.isNaN(Number(prevNums[2])) || Number.isNaN(Number(consNums[2])))){
                         if (Number(prevNums[2]) > Number(consNums[2])){ return 1
                         }else if (Number(prevNums[2]) < Number(consNums[2])){ return -1}else{return 0}
                     } else {
@@ -21,9 +22,10 @@ export function initialSort(objectString: { [key:string]:string }){
                         }else if (prevNums[2] < consNums[2]){ return -1}else{return 0}
                     }
             }}else {
+
                 if (prevNums[1] > consNums[1]){ return 1
                 }else if (prevNums[1] < consNums[1]){ return -1}else{
-                    if (Number(prevNums[2]!==undefined && consNums[2]!==undefined)){
+                    if (!(Number.isNaN(Number(prevNums[2])) || Number.isNaN(Number(consNums[2])))){
                         if (Number(prevNums[2]) > Number(consNums[2])){ return 1
                         }else if (Number(prevNums[2]) < Number(consNums[2])){ return -1}else{return 0}
                     } else {
