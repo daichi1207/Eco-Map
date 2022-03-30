@@ -1,1 +1,9 @@
-
+.mt-3{
+    font-size: 30px;
+}
+@media screen and (max-width: 990px){
+    .mt-3{
+        font-size: 100%;
+        margin: 0;
+    }
+}
