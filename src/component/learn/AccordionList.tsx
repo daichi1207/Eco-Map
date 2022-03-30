@@ -115,8 +115,8 @@ const config = {
   ['8.9.1 Tourism direct GDP as a proportion of total GDP and in growth rate'],
   ['8.10.1 (a) Number of commercial bank branches per 100,000 adults and (b) number of automated teller machines (ATMs) per 100,000 adults',
     '8.10.2 Proportion of adults (15\xa0years and older) with an account at a bank or other financial institution or with a mobile-money-service provider'],
-  ['8.a.1 Aid for Trade commitments and disbursements',
-    '8.b.1 Existence of a developed and operationalized national strategy for youth employment, as a distinct strategy or as part of a national employment strategy']],
+  ['8.a.1 Aid for Trade commitments and disbursements'],
+  ['8.b.1 Existence of a developed and operationalized national strategy for youth employment, as a distinct strategy or as part of a national employment strategy']],
   "9": [['9.1.1 Proportion of the rural population who live within 2\xa0km of an all-season road',
     '9.1.2 Passenger and freight volumes, by mode of transport'],
   ['9.2.1 Manufacturing value added as a proportion of GDP and per capita',
@@ -141,8 +141,8 @@ const config = {
     '10.7.3 Number of people who died or disappeared in the process of migration towards an international destination',
     '10.7.4 Proportion of the population who are refugees, by country of origin'],
   ['10.a.1 Proportion of tariff lines applied to imports from least developed countries and developing countries with zero-tariff'],
-  ['10.b.1 Total resource flows for development, by recipient and donor countries and type of flow (e.g. official development assistance, foreign direct investment and other flows)',
-    '10.c.1 Remittance costs as a proportion of the amount remitted']],
+  ['10.b.1 Total resource flows for development, by recipient and donor countries and type of flow (e.g. official development assistance, foreign direct investment and other flows)'],
+  ['10.c.1 Remittance costs as a proportion of the amount remitted']],
   "11": [['11.1.1 Proportion of urban population living in slums, informal settlements or inadequate housing'],
   ['11.2.1 Proportion of population that has convenient access to public transport, by sex, age and persons with disabilities'],
   ['11.3.1 Ratio of land consumption rate to population growth rate',
@@ -156,7 +156,8 @@ const config = {
     '11.7.2 Proportion of persons victim of physical or sexual harassment, by sex, age, disability status and place of occurrence, in the previous 12 months'],
   ['11.a.1 Number of countries that have national urban policies or regional development plans that (a) respond to population dynamics; (b) ensure balanced territorial development; and (c) increase local fiscal space'],
   ['11.b.1 Number of countries that adopt and implement national disaster risk reduction strategies in line with the Sendai Framework for Disaster Risk Reduction 2015–2030',
-    '11.b.2 Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies']],
+    '11.b.2 Proportion of local governments that adopt and implement local disaster risk reduction strategies in line with national disaster risk reduction strategies'],
+  ['11.c.1']],
   "12": [['12.1.1 Number of countries developing, adopting or implementing policy instruments aimed at supporting the shift to sustainable consumption and production'],
   ['12.2.1 Material footprint, material footprint per capita, and material footprint per GDP',
     '12.2.2 Domestic material consumption, domestic material consumption per capita, and domestic material consumption per GDP'],
@@ -225,8 +226,8 @@ const config = {
   ['16.10.1 Number of verified cases of killing, kidnapping, enforced disappearance, arbitrary detention and torture of journalists, associated media personnel, trade unionists and human rights advocates in the previous 12\xa0months',
     '16.10.2 Number of countries that adopt and implement constitutional, statutory and/or policy guarantees for public access to information'],
   ['16.a.1 Existence of independent national human rights institutions in compliance with the Paris Principles'],
-  ['16.b.1 Proportion of population reporting having personally felt discriminated against or harassed in the previous 12 months on the basis of a ground of discrimination prohibited under international human rights law'],
-  ['17.1.1 Total government revenue as a proportion of GDP, by source',
+  ['16.b.1 Proportion of population reporting having personally felt discriminated against or harassed in the previous 12 months on the basis of a ground of discrimination prohibited under international human rights law']],
+  "17": [['17.1.1 Total government revenue as a proportion of GDP, by source',
     '17.1.2 Proportion of domestic budget funded by domestic taxes'],
   ['17.2.1 Net official development assistance, total and to least developed countries, as a proportion of the Organization for Economic Cooperation and Development (OECD) Development Assistance Committee donors’ gross national income (GNI)'],
   ['17.3.1 Foreign direct investment, official development assistance and South-South cooperation as a proportion of gross national income',
@@ -269,7 +270,6 @@ const AccordionList: React.FC<Props> = (props) => {
   let list = config[props.id as keyof typeof config][props.num]
 
   let item = list.map(i => {
-    console.log(i)
     return (
       <li>{i}</li>
     );
