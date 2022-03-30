@@ -77,7 +77,7 @@ export const StyledListbox = styled('ul')(
   padding: 5px;
   margin: 10px 0;
   min-width: 320px;
-  max-height:500px;
+  max-height:300px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
