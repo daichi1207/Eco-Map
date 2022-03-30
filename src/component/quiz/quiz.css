@@ -55,23 +55,37 @@
   height: 60px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #f5dcc4;
+  background-color: #ffbf66;
   border-radius: 16px;
-  border-color: #f5dcc4;
+  border-color: #ffbf66;
   color: #1a1713;
   font-size: 20px;
   font-family: Prata;
   align-content: center;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
 .choice:hover{
-  background-color: #f5c493;
-  border-color: #f5c493;
+  background-color: #ff9500;
+  border-color: #ff9500;
   color: #1a1713;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
-.Judgement {
-  background-color: #f4ede6;
+.Judgement_correct {
+  background-color: #ff66a6;
+  max-width: inherit;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Judgement_wrong {
+  background-color: #66a6ff;
   max-width: inherit;
   width: 100%;
   position: absolute;
@@ -86,10 +100,11 @@
   margin-top: 200px;
   width: 100px;
   color: #1a1713;
-  background-color: #f5dcc4;
+  background-color: #ffbf66;
   border-radius: 14px;
   font-family: Prata;
   font-size: 25px;
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 }
 
 .result{
