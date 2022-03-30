@@ -1,3 +1,16 @@
+# Eco-Map
+You can access it here.
+https://ecomap-d8c09.firebaseapp.com/
+
+The app displays all SDG data in maps, tables and graphs; the Map changes colour as the numerical value of an indicator changes, so you can visually see which areas have the largest indicators.
+You can select an indicator from the list box above and a country or year from the search box below it. The region to be displayed can easily be selected by clicking on the button below the map, and
+You can also move the slider to see how the data changes from year to year.
+The graphs below the Map are an Area Chart, a pie chart a bar chart and a table that visualises the data for the year, and you can also move the slider to see the year-by-year changes. Data can also be easily downloaded and shared to social networking sites. Click on Options to see current indicator targets and sources.
+You can also click on the quiz button above to take a quiz on the SDGs. Thus, congratulations if you pass the four questions, and even if you fail, you will gain new knowledge about the SDGs.
+You can also press the Learn button to learn about the 169 indicators corresponding to the 17 targets of each SDGs.
+
+![2022-03-30](https://user-images.githubusercontent.com/87016067/160861279-6f594e7a-ca23-4fa8-832e-f4439784f71a.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +18,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+npm install --save react-google-charts
+npm install firebase
+npm install bootstrap
+npm install react-responsive --save
+npm install react-router-dom @types/react-router-dom
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
+npm install @mui/x-data-grid
+npm install react-share --save
 
 ### `npm start`
 
