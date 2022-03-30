@@ -1,11 +1,11 @@
-export const options = {
+export const geoChartOptions = {
     region:"world",
     sizeAxis: { minSize: 100, maxSize: 100 },
 
 
     colorAxis: {colors: ["blue","green","yellow","red"]},
     legend:{position:'bottom',textStyle: {color: 'black', fontSize: 0}},
-    tooltip:{textStyle: {fontSize: 20,bold:true}, showColorCode: true,zIndex:30},
+    tooltip:{textStyle: {fontSize: 17,bold:true}, showColorCode: true,zIndex:30},
 
     backgroundColor: '#81d4fa',
     datalessRegionColor: 'white',
@@ -56,13 +56,10 @@ export const areaChartOptions=(titleName:string)=>{
         legend:{position:'bottom'},
         title:titleName,
         hAxis:{gridlines:{minSpacing:50}},
-        tooltip:{textStyle: {color: '#FF0000'}, showColorCode: true},
+        tooltip:{textStyle: {fontSize: 17,bold:true}, showColorCode: true},
 
 }}
-export const tableOption={
-    cssClassNames :{headerRow: 'bigAndBoldClass',
-        tableRow: 'highlightClass'}
-};
+
 export const pieChartOption={
     chartArea:{left:"0%",right:"0%",top:20,width:'60%',height:'80%'},
     fontSize:12,

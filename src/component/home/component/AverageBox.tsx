@@ -8,13 +8,17 @@ import {getKeyByValue} from "../function/getKeyValue";
 import {allCountriesMetaData} from "../Data/dataExmples";
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    fontSize:'90%',
+    fontSize:'80%',
     textAlign: 'center',
 
     color: theme.palette.text.secondary,
-    height: 80,
+    height: '100%',
+    width:'100%',
     lineHeight: '30px',
     fontWeight:'bolder',
+    overflowWrap:'break-word',
+    wordWrap:"break-word",
+
 
 
 }));
@@ -37,6 +41,8 @@ export  function AverageBox(props:AverageBoxType) {
                             borderRadius:'30px',
                             backgroundColor: 'background.default',
                             display: 'grid',
+                            overflowWrap:'break-word',
+                            wordWrap:"break-word",
 
                             gap: 1,
                         }}

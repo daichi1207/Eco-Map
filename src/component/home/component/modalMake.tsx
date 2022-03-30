@@ -3,29 +3,19 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { allCountriesMetaData,  SDGStargetNames} from "../Data/dataExmples";
+
 import '../style/map.css'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-import DialogTitle from '@mui/material/DialogTitle';
-import {Autocomplete} from "@mui/material";
-import {TextField} from "@mui/material";
+
 import {YearSlider} from "./TimeBar";
-import {SDGsTargetObject} from "../Data/SDGsTargetData";
+
 import {AutoCompleteCountries} from "./autoCompleteCountries";
 import {AutoCompleteYear} from "./autoCompleteYear";
-import {
-    FacebookIcon,
-    FacebookShareButton,
-    LinkedinIcon,
-    LinkedinShareButton,
-    TwitterIcon,
-    TwitterShareButton, WhatsappIcon, WhatsappShareButton
-} from "react-share";
-import Box from "@mui/material/Box";
 import {ShareIcons} from "./shareIcons";
+import {initialSort} from "../function/sortInitialData";
 
 
 const ButtonStyle={
@@ -36,19 +26,21 @@ const ButtonStyle={
     fontSize:'160%',
     fontWeight:'bolder'
 
+
 }
 
 type ModalMake={
-    clickComponent(e :React.MouseEvent<HTMLButtonElement, MouseEvent>):void,
-    countryComponent(name:string):void
+    dataChangeButton(e :React.MouseEvent<HTMLButtonElement, MouseEvent>):void,
+    setRegions(name:string):void
     dataSource:string
     timeArray:number[]
-    yearChange(value:number):void
+    setCurrentYear(value:number):void
     currentStatus:string
     defaultYear:number
-    currentYearData:number
+    currentYear:number
     targetName:string
     unit:string
+    SDGsTargetObjects:{[key:string]:string}
 
 
 }
@@ -69,7 +61,7 @@ export function BasicModal(props:ModalMake) {
         setOpen(false);
     };
 
-    const descriptionElementRef = React.useRef(null);
+
 
 
     return (
@@ -92,28 +84,28 @@ export function BasicModal(props:ModalMake) {
 
                 <DialogContent dividers={scroll === 'paper'}>
                     <Typography variant='h6' sx={{marginLeft:2}}>Target</Typography>
-                    <Typography sx={{marginLeft:4}}>{SDGsTargetObject[props.targetName]}</Typography>
+                    <Typography sx={{marginLeft:4}}>{props.SDGsTargetObjects[props.targetName]}</Typography>
                     <Typography variant='h6' sx={{marginLeft:2}}>Unit</Typography>
                     <Typography sx={{marginLeft:4}}>{props.unit}</Typography>
 
-                    <YearSlider timeArray={props.timeArray} yearChange={props.yearChange} currentYearData={props.currentYearData}/>
+                    <YearSlider timeArray={props.timeArray} setCurrentYear={props.setCurrentYear} currentYear={props.currentYear}/>
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Years</Typography>
-                    <AutoCompleteCountries size={33} timeArray={props.timeArray} yearChange={props.yearChange} defaultYear={props.defaultYear}/>
+                    <AutoCompleteCountries size={33} timeArray={props.timeArray} setCurrentYear={props.setCurrentYear} defaultYear={props.defaultYear}/>
 
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Map Region</Typography>
-                    <AutoCompleteYear size={33} countryComponent={props.countryComponent}/>
+                    <AutoCompleteYear size={33} setRegions={props.setRegions}/>
                     <Typography id="modal-modal-description" sx={{ mt: 2,marginLeft:2 }} variant="h6">
                         Click SDGs target!
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2,marginLeft:2 }} variant="h6">
                         Map Change
                     </Typography>
-                    {SDGStargetNames.map((tableTitle)=>
+                    {initialSort(props.SDGsTargetObjects).map((tableTitle)=>
                         <Button sx={{
 
                             marginLeft:'10%',
                             textAlign: 'left',
-                        }} value={tableTitle} key={tableTitle} onClick={(event => props.clickComponent(event))}>{tableTitle}</Button>
+                        }} value={tableTitle} key={tableTitle} onClick={(event => props.dataChangeButton(event))}>{tableTitle}</Button>
                     )}
                     <Typography variant='h6' sx={{marginLeft:2}}>Source of data</Typography>
                     <Typography id="modal-modal-description" sx={{

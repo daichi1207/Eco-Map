@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
     DataGrid,
-    GridToolbar,
+
     GridToolbarContainer,
-    GridToolbarColumnsButton,
+
     GridToolbarFilterButton,
     GridToolbarExport,
-    GridToolbarDensitySelector,
+
 } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 
@@ -57,8 +57,8 @@ export function SDGsTable(props:tableProps){
                 }}
 
                 columns={[
-                    { field: 'col1', headerName: props.dataset[0][0], width: 100 ,headerClassName: 'super-app-theme--header',},
-                    { field: 'col2', headerName: props.unit as string,width: 260 ,headerClassName: 'super-app-theme--header',hideable:false},
+                    { field: 'col1', headerName: props.dataset[0][0], width: 150 ,headerClassName: 'super-app-theme--header',},
+                    { field: 'col2', headerName: props.unit as string,width: 220 ,headerClassName: 'super-app-theme--header',hideable:false},
                 ]}
                 rows={props.dataset.map(function(value,index){
 
@@ -70,7 +70,7 @@ export function SDGsTable(props:tableProps){
 
                             return {id: index, col1: value[0], col2: inputColumn2}
                         } else {
-                            return {id: index, col1: value[0], col2: "value[1]"}
+                            return {id: index, col1: value[0], col2: "value"}
                         }
                     }
                 }).filter(Boolean) as { id: number; col1: string; col2: (number|string); }[]}
