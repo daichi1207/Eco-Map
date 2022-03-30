@@ -1,14 +1,11 @@
 import "./style/map.css"
-import React, {ReactNode, Ref, useCallback, useEffect, useState} from "react";
+import React, {ReactNode, Ref,  useEffect, useState} from "react";
 import Chart from "react-google-charts";
 import {collection,  getDocs, query,where,documentId} from "firebase/firestore";
-import {data1,  SDGStargetNames, data1_re} from "./Data/dataExmples";
+import {data1,  data1_re,SDGsInitialObject} from "./Data/dataExmples";
 import {db} from "./firebase/firebaseCongig";
-import {areaChartOptions, barChartOption, options, pieChartOption, tableOption} from "./component/chartOptions";
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import {areaChartOptions, barChartOption, geoChartOptions, pieChartOption} from "./component/chartOptions";
 
-
-import { enableIndexedDbPersistence } from "firebase/firestore";
 import {swap} from "./function/sortData";
 
 import {BasicModal} from "./component/modalMake";
@@ -27,12 +24,13 @@ import SelectUnstyled from "@mui/base/SelectUnstyled";
 import {YearSlider} from "./component/TimeBar";
 import {RowAndColumnSpacing} from "./component/TimeBarLegend";
 import {SDGsTable} from "./component/SDGsTable";
-import {SDGsTargetObject} from "./Data/SDGsTargetData";
+
 import {AutoCompleteCountries} from "./component/autoCompleteCountries";
 import {AutoCompleteYear} from "./component/autoCompleteYear";
-import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
+
 import {StringToNumber} from "./function/stringToNumber";
 import {StringToDelete} from "./function/stringToDelete";
+import {initialSort} from "./function/sortInitialData";
 
 
 
@@ -42,19 +40,22 @@ interface dragon{ [key:string]: {[key:number]:{'Data':{[key:string]:(string|numb
 
 export function Map(){
     useEffect(()=>{
+        metaDataGet("indicators")
+
+    },[])
+    useEffect(()=>{
         let firstDataTitle="1.1.1 Proportion of population below international poverty line (%)"
         takeSnapshot(firstDataTitle.substring(0,2),firstDataTitle)
         setListBoxValue("1.1.1 Proportion of population below international poverty line (%)")
     },[])
 
 
+
     const [dataset,setDataset]=useState(data1)
 
     const [regions,setRegions]=useState("world")
     const [documentCache,setDocCache]=useState({"1.1.1 Proportion of population below international poverty line (%)":{2019:{'Data':data1_re,'Unit':'person','Source':'Google'},'Unit':'person','Source':'Google'}} as dragon)
-    const [red,setRed]=useState("50")
-    const [green,setGreen]=useState("50")
-    const [blue,setBlue]=useState("50")
+
     const [unit,setUnit]=useState("cm")
     const [averageArray,setAverageArray]=useState(100)
     const [listBoxValue,setListBoxValue]=useState("first")
@@ -63,15 +64,28 @@ export function Map(){
     const [currentYear,setCurrentYear]=useState(2019)
     const [targetName,setTargetName]=useState("1.1.1 Proportion of population below international poverty line (%)")
     const [yearByData,setYearByData]=useState(data1)
+    const [SDGsTargetObject,setSDGsTargetObject]=useState(SDGsInitialObject as {[key:string]:string})
 
 
     const [docNowName,setDocNowName]=useState("google")
-    options.region=regions
-    barChartOption.colors[0]='rgb('+red+','+green+','+blue+')'
+    geoChartOptions.region=regions
 
 
 
 
+    const metaDataGet=(initiateText:string)=>{
+        const metaData = getDocs(query(collection(db, "metadata"), where(documentId(), "==", initiateText)))
+        metaData.then((querySnapshot) => {
+            querySnapshot.docs
+                .forEach((doc) => {
+                    if (doc.id == "indicators") {
+
+                        setSDGsTargetObject(doc.data())
+
+                    }
+                });
+        });
+    }
 
 
 
@@ -255,7 +269,7 @@ export function Map(){
 
             <div className="topTable">
                 <CustomSelect className="change_table"   value={listBoxValue}>
-                    {SDGStargetNames.map((tableTitle)=>
+                    {initialSort(SDGsTargetObject).map((tableTitle)=>
                         <StyledOption value={tableTitle} key={tableTitle}>{tableTitle}</StyledOption>
                     )}
                 </CustomSelect>
@@ -270,19 +284,28 @@ export function Map(){
                     defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}
                     currentYearData={currentYear}
                     unit={unit}
+                    SDGsTargetObjects={SDGsTargetObject}
 
                 />
             </div>
+
+
+
+
             <div className='topTable2'>
-                <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
-                <AutoCompleteYear size={46} countryComponent={setRegions}/>
+
+                    <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
+                    <AutoCompleteYear size={48} countryComponent={setRegions}/>
+
             </div>
-            <AverageBox regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
 
 
 
+            <div className="geochartParent">
+                <AverageBox  regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
+                <Chart className="geoChart" chartType="GeoChart" width="98%" height="420px" data={dataset} options={geoChartOptions}  />
+            </div>
 
-            <Chart chartType="GeoChart" width="98%" height="420px" data={dataset} options={options} className="geoChart" />
             <div className="regionButtonParent">
 
                 <button className="regionButton" onClick={()=>setRegions("world")}>World</button>
@@ -320,7 +343,7 @@ export function Map(){
             </div>
             <RowAndColumnSpacing/>
             <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
-
+            <div>&nbsp;</div>
 
 
         </div>

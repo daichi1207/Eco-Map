@@ -3,29 +3,19 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { allCountriesMetaData,  SDGStargetNames} from "../Data/dataExmples";
+
 import '../style/map.css'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
-import DialogTitle from '@mui/material/DialogTitle';
-import {Autocomplete} from "@mui/material";
-import {TextField} from "@mui/material";
+
 import {YearSlider} from "./TimeBar";
-import {SDGsTargetObject} from "../Data/SDGsTargetData";
+
 import {AutoCompleteCountries} from "./autoCompleteCountries";
 import {AutoCompleteYear} from "./autoCompleteYear";
-import {
-    FacebookIcon,
-    FacebookShareButton,
-    LinkedinIcon,
-    LinkedinShareButton,
-    TwitterIcon,
-    TwitterShareButton, WhatsappIcon, WhatsappShareButton
-} from "react-share";
-import Box from "@mui/material/Box";
 import {ShareIcons} from "./shareIcons";
+import {initialSort} from "../function/sortInitialData";
 
 
 const ButtonStyle={
@@ -35,6 +25,7 @@ const ButtonStyle={
     backgroundColor:'#FF6600',
     fontSize:'160%',
     fontWeight:'bolder'
+
 
 }
 
@@ -49,6 +40,7 @@ type ModalMake={
     currentYearData:number
     targetName:string
     unit:string
+    SDGsTargetObjects:{[key:string]:string}
 
 
 }
@@ -92,7 +84,7 @@ export function BasicModal(props:ModalMake) {
 
                 <DialogContent dividers={scroll === 'paper'}>
                     <Typography variant='h6' sx={{marginLeft:2}}>Target</Typography>
-                    <Typography sx={{marginLeft:4}}>{SDGsTargetObject[props.targetName]}</Typography>
+                    <Typography sx={{marginLeft:4}}>{props.SDGsTargetObjects[props.targetName]}</Typography>
                     <Typography variant='h6' sx={{marginLeft:2}}>Unit</Typography>
                     <Typography sx={{marginLeft:4}}>{props.unit}</Typography>
 
@@ -108,7 +100,7 @@ export function BasicModal(props:ModalMake) {
                     <Typography id="modal-modal-description" sx={{ mt: 2,marginLeft:2 }} variant="h6">
                         Map Change
                     </Typography>
-                    {SDGStargetNames.map((tableTitle)=>
+                    {initialSort(props.SDGsTargetObjects).map((tableTitle)=>
                         <Button sx={{
 
                             marginLeft:'10%',
