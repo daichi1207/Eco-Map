@@ -10,7 +10,7 @@ import {
 import * as React from "react";
 
 let shareText="You can visualize data of SDGs indicators in a map"
-let shareUrl="https://eco-map-dev-kapikei.web.app/"
+let shareUrl="https://ecomap-d8c09.firebaseapp.com/"
 type ShareIconType={
     top:string
     left:string
