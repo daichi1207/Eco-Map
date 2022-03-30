@@ -1,24 +1,11 @@
-import * as createPalette from '@material-ui/core/styles/createPalette';
+
 declare module '@material-ui/core/styles/createPalette' {
-    interface PaletteOptions {
-        customColor1?: PaletteColorOptions;
-        customColor2?: PaletteColorOptions;
-        primaryGradation?: GradationPaletteColorOptions
-    }
+
     interface Palette {
         customColor1: PaletteColor;
         customColor2: PaletteColor;
     }
-    interface GradationPaletteColorOptions {
-        toRight?: string
-        toBottom?: string
-        toRightBottom?: string
-    }
-    interface GradationPaletteColor {
-        toRight: string
-        toBottom: string
-        toRightBottom?: string
-    }
+
 }
 
 const theme = createMuiTheme({
@@ -49,4 +36,4 @@ const theme = createMuiTheme({
     },
 })
 
-//https://zenn.dev/tttela/articles/c197e2567f31130dd8e1
+

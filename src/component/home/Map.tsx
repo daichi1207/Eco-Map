@@ -244,17 +244,17 @@ export function Map(){
         }
     }
     useEffect(() => {
-        // delay 後 debounce の対象 state をアップデート
+
         const timer = setTimeout(() => {
             yearChangeProgress(currentYear);
         },80);
 
-        // 次の effect が実行される直前に timer キャンセル
+
         return () => {
             clearTimeout(timer);
         };
 
-        // value、delay がアップデートするたびに effect 実行
+
     }, [currentYear]);
 
 
@@ -274,15 +274,15 @@ export function Map(){
                     )}
                 </CustomSelect>
                 <BasicModal
-                    clickComponent={dataChangeButton}
-                    countryComponent={setRegions}
+                    dataChangeButton={dataChangeButton}
+                    setRegions={setRegions}
                     dataSource={sourceOfData}
                     timeArray={dataYears}
-                    yearChange={setCurrentYear}
+                    setCurrentYear={setCurrentYear}
                     currentStatus={currentYear+" "+targetName}
                     targetName={targetName}
                     defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}
-                    currentYearData={currentYear}
+                    currentYear={currentYear}
                     unit={unit}
                     SDGsTargetObjects={SDGsTargetObject}
 
@@ -294,8 +294,8 @@ export function Map(){
 
             <div className='topTable2'>
 
-                    <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
-                    <AutoCompleteYear size={48} countryComponent={setRegions}/>
+                    <AutoCompleteCountries size={48} timeArray={dataYears} setCurrentYear={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
+                    <AutoCompleteYear size={48} setRegions={setRegions}/>
 
             </div>
 
@@ -319,7 +319,7 @@ export function Map(){
 
             </div>
             <RowAndColumnSpacing/>
-            <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
+            <YearSlider timeArray={dataYears} setCurrentYear={setCurrentYear} currentYear={currentYear}/>
             <div className="BarChartHead2">Data Change Progress</div>
             <Chart chartType='AreaChart' data={yearByData.map(function(yearByData1){if(yearByData1[0]!='Country' ){return [Number(yearByData1[0]),yearByData1[1]]}else{return yearByData1}})} options={areaChartOptions(listBoxValue)}/>
 
@@ -342,7 +342,7 @@ export function Map(){
 
             </div>
             <RowAndColumnSpacing/>
-            <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
+            <YearSlider timeArray={dataYears} setCurrentYear={setCurrentYear} currentYear={currentYear}/>
             <div>&nbsp;</div>
 
 

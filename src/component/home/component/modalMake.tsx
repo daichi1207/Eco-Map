@@ -30,14 +30,14 @@ const ButtonStyle={
 }
 
 type ModalMake={
-    clickComponent(e :React.MouseEvent<HTMLButtonElement, MouseEvent>):void,
-    countryComponent(name:string):void
+    dataChangeButton(e :React.MouseEvent<HTMLButtonElement, MouseEvent>):void,
+    setRegions(name:string):void
     dataSource:string
     timeArray:number[]
-    yearChange(value:number):void
+    setCurrentYear(value:number):void
     currentStatus:string
     defaultYear:number
-    currentYearData:number
+    currentYear:number
     targetName:string
     unit:string
     SDGsTargetObjects:{[key:string]:string}
@@ -61,7 +61,7 @@ export function BasicModal(props:ModalMake) {
         setOpen(false);
     };
 
-    const descriptionElementRef = React.useRef(null);
+
 
 
     return (
@@ -88,12 +88,12 @@ export function BasicModal(props:ModalMake) {
                     <Typography variant='h6' sx={{marginLeft:2}}>Unit</Typography>
                     <Typography sx={{marginLeft:4}}>{props.unit}</Typography>
 
-                    <YearSlider timeArray={props.timeArray} yearChange={props.yearChange} currentYearData={props.currentYearData}/>
+                    <YearSlider timeArray={props.timeArray} setCurrentYear={props.setCurrentYear} currentYear={props.currentYear}/>
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Years</Typography>
-                    <AutoCompleteCountries size={33} timeArray={props.timeArray} yearChange={props.yearChange} defaultYear={props.defaultYear}/>
+                    <AutoCompleteCountries size={33} timeArray={props.timeArray} setCurrentYear={props.setCurrentYear} defaultYear={props.defaultYear}/>
 
                     <Typography variant='h6' sx={{marginLeft:2}}>Select Map Region</Typography>
-                    <AutoCompleteYear size={33} countryComponent={props.countryComponent}/>
+                    <AutoCompleteYear size={33} setRegions={props.setRegions}/>
                     <Typography id="modal-modal-description" sx={{ mt: 2,marginLeft:2 }} variant="h6">
                         Click SDGs target!
                     </Typography>
@@ -105,7 +105,7 @@ export function BasicModal(props:ModalMake) {
 
                             marginLeft:'10%',
                             textAlign: 'left',
-                        }} value={tableTitle} key={tableTitle} onClick={(event => props.clickComponent(event))}>{tableTitle}</Button>
+                        }} value={tableTitle} key={tableTitle} onClick={(event => props.dataChangeButton(event))}>{tableTitle}</Button>
                     )}
                     <Typography variant='h6' sx={{marginLeft:2}}>Source of data</Typography>
                     <Typography id="modal-modal-description" sx={{

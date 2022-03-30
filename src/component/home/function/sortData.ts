@@ -1,5 +1,5 @@
 
-import {data1} from "../Data/dataExmples";
+
 export function swap(doubleArray:[string,(string|number)][]){
     let firstArrayIndex=0
     let columnArrayIndex=0
@@ -19,4 +19,4 @@ export function swap(doubleArray:[string,(string|number)][]){
 
     return doubleArray;
 }
-swap(data1)
+
