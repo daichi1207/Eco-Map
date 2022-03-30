@@ -1,14 +1,11 @@
 import "./style/map.css"
-import React, {ReactNode, Ref, useCallback, useEffect, useState} from "react";
+import React, {ReactNode, Ref,  useEffect, useState} from "react";
 import Chart from "react-google-charts";
 import {collection,  getDocs, query,where,documentId} from "firebase/firestore";
-import {data1,  SDGStargetNames, data1_re} from "./Data/dataExmples";
+import {data1,  data1_re,SDGsInitialObject} from "./Data/dataExmples";
 import {db} from "./firebase/firebaseCongig";
-import {areaChartOptions, barChartOption, options, pieChartOption, tableOption} from "./component/chartOptions";
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import {areaChartOptions, barChartOption, geoChartOptions, pieChartOption} from "./component/chartOptions";
 
-
-import { enableIndexedDbPersistence } from "firebase/firestore";
 import {swap} from "./function/sortData";
 
 import {BasicModal} from "./component/modalMake";
@@ -22,23 +19,20 @@ import {
     StyledButton,
     StyledListbox,
     StyledPopper
-} from "./component/listBoxSample";
+} from "./component/listBoxIndicators";
 import SelectUnstyled from "@mui/base/SelectUnstyled";
 import {YearSlider} from "./component/TimeBar";
 import {RowAndColumnSpacing} from "./component/TimeBarLegend";
 import {SDGsTable} from "./component/SDGsTable";
-import {SDGsTargetObject} from "./Data/SDGsTargetData";
+
 import {AutoCompleteCountries} from "./component/autoCompleteCountries";
 import {AutoCompleteYear} from "./component/autoCompleteYear";
 
-enableIndexedDbPersistence(db)
-    .catch((err) => {
-        if (err.code == 'failed-precondition') {
+import {StringToNumber} from "./function/stringToNumber";
+import {StringToDelete} from "./function/stringToDelete";
+import {initialSort} from "./function/sortInitialData";
 
-        } else if (err.code == 'unimplemented') {
 
-        }
-    });
 
 
 
@@ -46,19 +40,22 @@ interface dragon{ [key:string]: {[key:number]:{'Data':{[key:string]:(string|numb
 
 export function Map(){
     useEffect(()=>{
+        metaDataGet("indicators")
+
+    },[])
+    useEffect(()=>{
         let firstDataTitle="1.1.1 Proportion of population below international poverty line (%)"
-        takeSnapshot(firstDataTitle.charAt(0),firstDataTitle)
+        takeSnapshot(firstDataTitle.substring(0,2),firstDataTitle)
         setListBoxValue("1.1.1 Proportion of population below international poverty line (%)")
     },[])
+
 
 
     const [dataset,setDataset]=useState(data1)
 
     const [regions,setRegions]=useState("world")
     const [documentCache,setDocCache]=useState({"1.1.1 Proportion of population below international poverty line (%)":{2019:{'Data':data1_re,'Unit':'person','Source':'Google'},'Unit':'person','Source':'Google'}} as dragon)
-    const [red,setRed]=useState("50")
-    const [green,setGreen]=useState("50")
-    const [blue,setBlue]=useState("50")
+
     const [unit,setUnit]=useState("cm")
     const [averageArray,setAverageArray]=useState(100)
     const [listBoxValue,setListBoxValue]=useState("first")
@@ -67,25 +64,39 @@ export function Map(){
     const [currentYear,setCurrentYear]=useState(2019)
     const [targetName,setTargetName]=useState("1.1.1 Proportion of population below international poverty line (%)")
     const [yearByData,setYearByData]=useState(data1)
+    const [SDGsTargetObject,setSDGsTargetObject]=useState(SDGsInitialObject as {[key:string]:string})
 
 
     const [docNowName,setDocNowName]=useState("google")
-    options.region=regions
-    barChartOption.colors[0]='rgb('+red+','+green+','+blue+')'
+    geoChartOptions.region=regions
 
 
 
 
+    const metaDataGet=(initiateText:string)=>{
+        const metaData = getDocs(query(collection(db, "metadata"), where(documentId(), "==", initiateText)))
+        metaData.then((querySnapshot) => {
+            querySnapshot.docs
+                .forEach((doc) => {
+                    if (doc.id == "indicators") {
+
+                        setSDGsTargetObject(doc.data())
+
+                    }
+                });
+        });
+    }
 
 
 
 
 
     const takeSnapshot=(documentName:string,tableName:string)=>{
+        documentName=documentName.replace("\.","")
         setTargetName(tableName)
         if(documentName !=docNowName) {
 
-            const snapshot = getDocs(query(collection(db, "sdgs"), where(documentId(), "==", documentName)))
+            const snapshot = getDocs(query(collection(db, "SDGs"), where(documentId(), "==", documentName)))
             snapshot.then((querySnapshot) => {
                 querySnapshot.docs
                     .forEach((doc) => {
@@ -106,19 +117,22 @@ export function Map(){
                             setUnit(unitCache)
                             setSourceOfData(doc.data()[tableName]['Source'])
 
+                            let currentYearDataCache=doc.data()[tableName][currentYearCache]['Data']
 
-                            let sortValue=[...Object.entries(doc.data()[tableName][currentYearCache]['Data'])]
+
+
+                            let sortValue=[...StringToDelete(StringToNumber(Object.entries(currentYearDataCache)))]
 
                             let yearByDataCache=[["Country",unitCache+" "+"BY YEAR"]] as [string,(string|number)][]
                             for(let oneYearData of yearsCacheData){yearByDataCache.push(
-                                [oneYearData.toString(),getAverage(Object.entries(doc.data()[tableName][oneYearData]['Data']))])
+                                [oneYearData.toString(),getAverage(StringToNumber(Object.entries(doc.data()[tableName][oneYearData]['Data'])))])
                             }
 
                             setYearByData(yearByDataCache)
 
+                            let newSortValue=swap(sortValue)
+                            setAverageArray(getAverage(sortValue))
 
-                            setAverageArray(getAverage(Object.entries(doc.data()[tableName][currentYearCache]['Data'])))
-                            let newSortValue=swap(sortValue as [string, (string|number)][])
 
                             setDataset(newSortValue)
                             setDocCache(doc.data())
@@ -141,19 +155,20 @@ export function Map(){
 
             setUnit(unitCache)
             setSourceOfData(documentCache[tableName]['Source'])
-            let sortValue=[...Object.entries(documentCache[tableName][currentYearCache]['Data'])]
-            let newSortValue=swap(sortValue )
+            let sortValue=[...StringToNumber(Object.entries(documentCache[tableName][currentYearCache]['Data']))]
+
             let yearByDataCache=[["Country",unitCache]] as [string,(string|number)][]
             for(let oneYearData of yearsCacheData){yearByDataCache.push(
-                [oneYearData.toString(),getAverage(Object.entries(documentCache[tableName][oneYearData]['Data']))])
+                [oneYearData.toString(),getAverage(StringToNumber(Object.entries(documentCache[tableName][oneYearData]['Data'])))])
             }
 
 
             setYearByData(yearByDataCache)
 
             setAverageArray(getAverage(sortValue))
-
+            let newSortValue=swap(StringToDelete(sortValue))
             setDataset(newSortValue)
+
         }
 
 
@@ -176,7 +191,7 @@ export function Map(){
                     const changeData=value.toString() as string
                     setListBoxValue(changeData)
 
-                    takeSnapshot(changeData.charAt(0),changeData)
+                    takeSnapshot(changeData.substring(0,2),changeData)
 
             }
 
@@ -190,8 +205,8 @@ export function Map(){
                 const changeData=e.currentTarget.value.toString() as string
                 setListBoxValue(changeData)
 
-                takeSnapshot(changeData.charAt(0),changeData)
-                console.log(SDGsTargetObject['1.2.1　Proportion of population living below the national poverty line (%)'],targetName)
+                takeSnapshot(changeData.substring(0,2),changeData)
+
 
 
         }
@@ -218,25 +233,28 @@ export function Map(){
             setCurrentYear(yearInput)
 
             let sortValue=[...Object.entries(documentCache[targetName][yearInput]['Data'])]
-            let newSortValue=swap(sortValue )
+            let newSortValue=swap(StringToDelete(StringToNumber(sortValue) ))
 
-            setAverageArray(getAverage(sortValue))
+            setAverageArray(getAverage(StringToDelete(StringToNumber(sortValue))))
+
 
             setDataset(newSortValue)
+
+
         }
     }
     useEffect(() => {
-        // delay 後 debounce の対象 state をアップデート
+
         const timer = setTimeout(() => {
             yearChangeProgress(currentYear);
         },80);
 
-        // 次の effect が実行される直前に timer キャンセル
+
         return () => {
             clearTimeout(timer);
         };
 
-        // value、delay がアップデートするたびに effect 実行
+
     }, [currentYear]);
 
 
@@ -251,34 +269,43 @@ export function Map(){
 
             <div className="topTable">
                 <CustomSelect className="change_table"   value={listBoxValue}>
-                    {SDGStargetNames.map((tableTitle)=>
+                    {initialSort(SDGsTargetObject).map((tableTitle)=>
                         <StyledOption value={tableTitle} key={tableTitle}>{tableTitle}</StyledOption>
                     )}
                 </CustomSelect>
                 <BasicModal
-                    clickComponent={dataChangeButton}
-                    countryComponent={setRegions}
+                    dataChangeButton={dataChangeButton}
+                    setRegions={setRegions}
                     dataSource={sourceOfData}
                     timeArray={dataYears}
-                    yearChange={setCurrentYear}
+                    setCurrentYear={setCurrentYear}
                     currentStatus={currentYear+" "+targetName}
                     targetName={targetName}
                     defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}
-                    currentYearData={currentYear}
+                    currentYear={currentYear}
                     unit={unit}
+                    SDGsTargetObjects={SDGsTargetObject}
 
                 />
             </div>
+
+
+
+
             <div className='topTable2'>
-                <AutoCompleteCountries size={48} timeArray={dataYears} yearChange={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
-                <AutoCompleteYear size={46} countryComponent={setRegions}/>
+
+                    <AutoCompleteCountries size={48} timeArray={dataYears} setCurrentYear={setCurrentYear} defaultYear={dataYears.reduce(function (a, b) {return Math.max(a, b);})}/>
+                    <AutoCompleteYear size={48} setRegions={setRegions}/>
+
             </div>
-            <AverageBox regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
 
 
 
+            <div className="geochartParent">
+                <AverageBox  regionData={regions} averageData={averageArray.toString()} UnitData={unit}/>
+                <Chart className="geoChart" chartType="GeoChart" width="98%" height="420px" data={dataset} options={geoChartOptions}  />
+            </div>
 
-            <Chart chartType="GeoChart" width="98%" height="420px" data={dataset} options={options} className="geoChart" />
             <div className="regionButtonParent">
 
                 <button className="regionButton" onClick={()=>setRegions("world")}>World</button>
@@ -292,7 +319,7 @@ export function Map(){
 
             </div>
             <RowAndColumnSpacing/>
-            <YearSlider timeArray={dataYears} yearChange={setCurrentYear} currentYearData={currentYear}/>
+            <YearSlider timeArray={dataYears} setCurrentYear={setCurrentYear} currentYear={currentYear}/>
             <div className="BarChartHead2">Data Change Progress</div>
             <Chart chartType='AreaChart' data={yearByData.map(function(yearByData1){if(yearByData1[0]!='Country' ){return [Number(yearByData1[0]),yearByData1[1]]}else{return yearByData1}})} options={areaChartOptions(listBoxValue)}/>
 
@@ -308,16 +335,15 @@ export function Map(){
                 </div>
                 <div className="chartParent2">
                     <div className="BarChartHead">Table of All Countries</div>
-                    <SDGsTable dataset={dataset}/>
+                    <SDGsTable dataset={dataset} unit={unit}/>
 
                 </div>
 
 
             </div>
-            <input type="range" className="input-range-red" name="foo" min="0" max="255" onChange={(e)=>setRed(e.target.value)} />
-            <input type="range" className="input-range-green" name="foo" min="0" max="255" onChange={(e)=>setGreen(e.target.value)} />
-            <input type="range" className="input-range-blue" name="foo" min="0" max="255" onChange={(e)=>setBlue(e.target.value)} />
-
+            <RowAndColumnSpacing/>
+            <YearSlider timeArray={dataYears} setCurrentYear={setCurrentYear} currentYear={currentYear}/>
+            <div>&nbsp;</div>
 
 
         </div>

@@ -3,7 +3,7 @@
   font-family: Prata;
   font-style: normal;
   font-weight: normal;
-  font-size: 40px;
+  font-size: 50px;
   line-height: 33px;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
   font-family: Prata;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 19px;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
   font-family: Prata;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 19px;
   display: flex;
   align-items: center;
@@ -42,8 +42,8 @@
 }
 
 .choices-container {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -55,23 +55,37 @@
   height: 60px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: #FFF8F1;
+  background-color: #ffbf66;
   border-radius: 16px;
-  border-color: #FFF8F1;
+  border-color: #ffbf66;
   color: #1a1713;
-  font-size: 14px;
+  font-size: 20px;
   font-family: Prata;
   align-content: center;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
 .choice:hover{
-  background-color: #f4ede6;
-  border-color: #f4ede6;
+  background-color: #ff9500;
+  border-color: #ff9500;
   color: #1a1713;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
 
-.Judgement {
-  background-color: #f4ede6;
+.Judgement_correct {
+  background-color: #ff66a6;
+  max-width: inherit;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Judgement_wrong {
+  background-color: #66a6ff;
   max-width: inherit;
   width: 100%;
   position: absolute;
@@ -84,7 +98,49 @@
 
 .modal__closeBtn{
   margin-top: 200px;
+  width: 100px;
   color: #1a1713;
+  background-color: #ffbf66;
+  border-radius: 14px;
   font-family: Prata;
-  font-size: 14px;
+  font-size: 25px;
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+}
+
+.result{
+  background-color: #f4ede6;
+  max-width: inherit;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score{
+  font-family: Prata;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+  color: #1a1713;
+}
+
+.answer{
+  font-family: Prata;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+  color: #1a1713;
 }

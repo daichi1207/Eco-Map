@@ -5,11 +5,13 @@
 
 .topTable2{
     display: flex;
-    width:calc(98%/2);
+    width:calc(95%/2);
     transform: scale(0.95);
     margin-left: 2%;
     margin-top:10px;
     margin-bottom: 10px;
+    z-index: 20;
+    position: relative;
 
 
 
@@ -38,18 +40,19 @@
 
     z-index:1;
     position:absolute;
-    top:42%;
-    left:2%;
-    transform:scale(1);
+    top:12%;
+    left:5%;
+    transform:scale(1.3);
 
 
 }
 
 .AverageBox:hover{
-    transform: scale(1.5);
+    transform: scale(2);
     position:absolute;
-    top:42%;
-    left:5.5%;
+    top:16%;
+    left:12%;
+    z-index: 100;
 }
 .AverageBoxContent{
     text-align: left;
@@ -91,38 +94,34 @@
 
 .regionButtonParent{
     display:flex;
-    width: 100%;
+    width: 96%;
     height: 100%;
     margin-left: 2%;
-    margin-right:1%;
+    margin-right:0%;
 
 }
 .regionButton {
     position: relative;
-    font-size: 16px;
-    width: 14.28%;
+    font-size: 12px;
+    width: 15%;
     padding: 0.25em 0.5em;
     text-decoration: none;
     color: #FFF;
-    background: #fd9535;/*色*/
-    border-radius: 4px;/*角の丸み*/
-    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+    background: #FF8C00;
+    border-radius: 4px;
+    box-shadow: inset 0 4px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
     font-weight: bold;
-    border: solid 2px #d27d00;/*線色*/
+    border: solid 2px #d27d00;
+
 
 }
 
 .regionButton:active {
     /*押したとき*/
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+    background: #5989cf;
 }
-.regionButton{
 
-    font-size: 80%;
-    padding-left: 2px;
-    width: 13.7%;
-
-}
 .chartParent{
     display:flex;
     width: calc(100%);
@@ -176,6 +175,13 @@
 
 
 }
+
+.geochartParent{
+    position: relative;
+
+    padding:0;
+}
+
 .chartGrandParent{
     display:flex
 }
@@ -183,11 +189,24 @@
     .chartGrandParent {
         display:contents;
     }
+    .AverageBox{
+
+        z-index:1;
+        position:absolute;
+        margin-top: 1%;
+        top:0;
+        left:2%;
+        transform: scale(1);
+
+
+
+    }
     .AverageBox:hover{
         transform: scale(1.5);
         position:absolute;
-        top:41%;
-        left:15%;
+        top:6%;
+        left:12%;
+        z-index: 100;
     }
 }
 .input-range-red{

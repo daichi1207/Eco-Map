@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
+
 import Paper from '@mui/material/Paper';
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
-import {useEffect} from "react";
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -15,11 +15,16 @@ const Item = styled(Paper)(({ theme }) => ({
 
     fontSize:'100%',
     marginTop:'1%',
-    marginLeft:'30%',
+    marginLeft:'28%',
+    marginRight:'28%',
+
+
 
     marginBottom:'-0.8%',
-    background:'green',
+    background:'linear-gradient(to right bottom, green, #FFFF66)',
     display:"flex",
+    alignItems:'center',
+    justifyContent:'center',
 
 
 
@@ -29,7 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export  function RowAndColumnSpacing() {
     return (
 
-        <Grid container rowSpacing={0}>
+
 
             <Item>
                 <SwapHorizontalCircleIcon/>
@@ -38,7 +43,6 @@ export  function RowAndColumnSpacing() {
             </Item>
 
 
-        </Grid>
 
     );
 }
