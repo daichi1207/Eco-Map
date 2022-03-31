@@ -20,7 +20,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-# git clone
+### `git clone`
+git clone 'https://github.com/daichi1207/Eco-Map.git'
 
 In the project directory, you can run:
 
