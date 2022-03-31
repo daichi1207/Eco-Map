@@ -14,6 +14,8 @@ You can also press the Learn button to learn about the 169 indicators correspond
 
 ![2022-03-30](https://user-images.githubusercontent.com/87016067/160861279-6f594e7a-ca23-4fa8-832e-f4439784f71a.png)
 
+In this app. we use Google Charts(geochart,areachart,barchart),firebase(hosting,firestore),react-typescript(mui,bootstrap),react-share(facebook,twitter,linkedin)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
