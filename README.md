@@ -2,6 +2,8 @@
 You can access it here.
 https://ecomap-d8c09.firebaseapp.com/
 
+This app is build with firebase (hosting, firestore)
+
 This is movie of this web app
 https://www.youtube.com/watch?v=-rH9OHnMgL8
 
