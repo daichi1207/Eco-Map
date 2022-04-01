@@ -14,7 +14,7 @@ export const Number = React.createContext(
 
 const Quiz: React.FC = () => {
 
-    const [number, setNumber] = useState(Math.floor(Math.random() * 9));
+    const [number, setNumber] = useState(Math.floor(Math.random() * 14));
     const value = {
         number,
         setNumber,

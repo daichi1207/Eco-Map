@@ -31,7 +31,7 @@ const Choice: React.FC<Props> = (props) => {
                                 setCount(count+1);
                                 setCorrect(correct+1);
                                 setTfNumber(0);
-                                setNumber(Math.floor(Math.random() * 9));
+                                setNumber(Math.floor(Math.random() * 14));
                                 if(count===4){
                                     setResult(true);
                                 }
