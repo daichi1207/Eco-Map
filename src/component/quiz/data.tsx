@@ -136,4 +136,22 @@ export const questions=[
         {answer:"material recycling"},
         {commentary:""},
     ],
+    [
+        {sentence:"Which of the following marks certifies sustainable fisheries (natural marine products)?"},
+        {choice:"FSC Certification",tf:false},
+        {choice:"Rainforest Alliance Certification",tf:false},
+        {choice:"MSC Certification",tf:true},
+        {choice:"ASC Certification",tf:false},
+        {answer:"MSC Certification"},
+        {commentary:"MSC certification is for sustainable fisheries (natural marine products). This certification is for fisheries that meet the highest level of requirements set by the Food and Agriculture Organization of the United Nations (FAO) and other organizations."},
+    ],
+    [
+        {sentence:"In 2019, how many tens of thousands of people worldwide were \" displaced from their homes\" due to conflict or other reasons?"},
+        {choice:"3.95 million",tf:false},
+        {choice:"39.5 million",tf:false},
+        {choice:"7.95 million",tf:false},
+        {choice:"79.5 million",tf:true},
+        {answer:"79.5 million"},
+        {commentary:"This is the largest number since World War II."},
+    ],
 ];
