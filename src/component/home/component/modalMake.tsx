@@ -60,6 +60,16 @@ export function BasicModal(props:ModalMake) {
     const handleClose = () => {
         setOpen(false);
     };
+    const componentRef = React.createRef<HTMLElement>();
+    const returnTop = () => {
+        if (componentRef!==null){componentRef.current?.scrollTo(0,0)};
+    };
+    const returnBottom = () => {
+        if (componentRef!==null){componentRef.current?.scrollTo(0,100000)};
+    };
+    const returnMiddle = () => {
+        if (componentRef!==null){componentRef.current?.scrollTo(0,7000)};
+    };
 
 
 
@@ -67,8 +77,9 @@ export function BasicModal(props:ModalMake) {
     return (
         <div>
             <Button variant='contained' onClick={handleClickOpen("paper")} sx={ButtonStyle}>OPTIONS</Button>
-            <ShareIcons left="10" top="3"/>
+            <ShareIcons left="10" top="3" width="85%"/>
             <Dialog
+
                 open={open}
                 onClose={handleClose}
                 scroll={scroll}
@@ -78,11 +89,11 @@ export function BasicModal(props:ModalMake) {
                 <Typography variant='h4'>&nbsp;SDGs Map Options</Typography>
                 <Typography variant='h6' sx={{marginLeft:2.5}}>Current Data</Typography>
                 <Typography sx={{marginLeft:4}}>{props.currentStatus}</Typography>
-                <ShareIcons left="55" top="0"/>
+                <ShareIcons left="50" top="0" width="45%"/>
 
 
 
-                <DialogContent dividers={scroll === 'paper'}>
+                <DialogContent dividers={scroll === 'paper'} ref={componentRef}>
                     <Typography variant='h6' sx={{marginLeft:2}}>Target</Typography>
                     <Typography sx={{marginLeft:4}}>{props.SDGsTargetObjects[props.targetName]}</Typography>
                     <Typography variant='h6' sx={{marginLeft:2}}>Unit</Typography>
@@ -118,6 +129,9 @@ export function BasicModal(props:ModalMake) {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={returnTop}>Top</Button>
+                    <Button onClick={returnMiddle}>Middle</Button>
+                    <Button onClick={returnBottom}>Bottom</Button>
 
                     <Button onClick={handleClose}>Close</Button>
                 </DialogActions>

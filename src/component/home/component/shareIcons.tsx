@@ -14,10 +14,11 @@ let shareUrl="https://ecomap-d8c09.firebaseapp.com/"
 type ShareIconType={
     top:string
     left:string
+    width:string
 }
 export function ShareIcons(props:ShareIconType){
     return (
-        <Box sx={{height:'20%',width:'85%',transform:'scale(1.2)',marginLeft:props.left+'%',marginTop:props.top+'%'}}>
+        <Box sx={{height:'20%',width:props.width,transform:'scale(1.2)',marginLeft:props.left+'%',marginTop:props.top+'%',marginRight:0}}>
             <FacebookShareButton
                 url={shareUrl}
                 quote={shareText}
